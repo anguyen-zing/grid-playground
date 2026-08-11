@@ -1,0 +1,193 @@
+main > * {
+    font-family: "Inter";
+}
+
+zg-control-bar{
+    padding: 7px 7px 15px 7px;
+}
+
+zg-control-bar::part(batch-message) {
+    display: none;
+}
+
+.calc-toolbar{
+    display: flex;
+    flex-direction: row;
+    background: rgb(227, 236, 246);
+    padding: 7px 7px 7px 15px;
+    margin-top: -43px; 
+    align-self: flex-end;
+    z-index: 5;
+}
+
+.grid-calc-control{
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.grid-calc-column,
+.grid-calc-operation, 
+.grid-calc-button{
+    --border-color: #c7c0b5;
+    --background-color: #fffdf9;
+    --font-color: #0f1111;
+
+    padding: 3px 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background: var(--background-color);
+    color: var(--font-color);
+    font-family: "Inter";
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-calc-column,
+.grid-calc-operation{
+    margin-right: 5px;
+}
+
+.grid-calc-button{
+    --border-color: #098368;
+    --background-color: #069274;
+    --font-color: #ffffff;
+}
+
+.grid-calc-button:hover{
+    --background-color: #47b483;
+}
+
+.calc-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(38, 45, 45, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.calc-modal {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 30px;
+    background: #fffdf9;
+    border: 1px solid #ded6ca;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(45, 48, 43, 0.2);
+    color: #303b3d;
+}
+
+.calc-modal h2 {
+    margin: 0 0 22px;
+    font-family: "Inter";
+    font-size: 25px;
+    font-weight: 700;
+    color: #303b3d;
+}
+
+.calc-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #857c72;
+    font-size: 25px;
+    line-height: 34px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.calc-modal-close:hover {
+    background: #f6f3ed;
+    color: #cf1d1d;
+}
+
+.calc-modal label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #455456;
+}
+
+#modalCalcOp {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #c7c0b5;
+    border-radius: 7px;
+    background: #fffdf9;
+    color: #303b3d;
+    font-family: "Inter";
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+#modalCalcOp-label{
+    font-family: "Inter";
+    margin: 10px 0;
+}
+
+#modalCalcOp:focus {
+    border-color: #6f9994;
+    box-shadow: 0 0 0 3px rgba(111, 153, 148, 0.15);
+}
+
+#modalCalculateBtn {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 7px;
+    background: #33867c;
+    color: #ffffff;
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+#modalCalculateBtn:hover {
+    background: #426a66;
+}
+
+#modalCalculateBtn:active {
+    transform: scale(0.98);
+}
+
+#modalCalcResult {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #d5e2df;
+    border-radius: 9px;
+    background: #edf3f1;
+    font-family: "Inter";
+    text-align: center;
+}
+
+#calcModalTemplate,
+#selectedValues{
+    font-family: "Inter";
+}
+
+@media (max-width: 700px) {
+    .calc-modal {
+        padding: 22px;
+    }
+}

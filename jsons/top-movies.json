@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "ranking": 1,
+        "name": "Moana",
+        "tomatometer": "🍅🍅🍅",
+        "rating": 31,
+        "img": "/images/movies/movie-1.png",
+        "description": "In Disney's live-action reimagining of the beloved animated adventure, Moana answers the Ocean's call and, for the first time, voyages beyond the reef to save her people.",
+        "director": "Thomas Kail",
+        "critics_consensus": "The sea calls to no one in this underwhelming new version of Moana, an endeavor that solidifies its animated predecessor as the superior adventure."
+    },
+    {
+        "id": 2,
+        "ranking": 2,
+        "name": "The Odyssey",
+        "tomatometer": "🍅🍅🍅🍅🍅🍅🍅🍅🍅",
+        "rating": 95,
+        "img": "/images/movies/movie-2.png",
+        "description": "Odysseus, king of Ithaca, embarks on a perilous journey to return home after the Trojan War, facing mythical creatures and impossible trials along the way.",
+        "director": "Christopher Nolan",
+        "critics_consensus": "Reinvigorating an ancient adventure with majestic sweep and sterling work by its colossal ensemble, Christopher Nolan's The Odyssey imbues myth with primal human feeling."
+    },
+    {
+        "id": 3,
+        "ranking": 3,
+        "name": "Evil Dead Burn",
+        "tomatometer": "🍅🍅🍅🍅🍅🍅🍅",
+        "rating": 72,
+        "img": "/images/movies/movie-3.png",
+        "description": "Evil Dead Burn unleashes the franchise's most savage and terrifying ride to date, blazing onto big screens with an all-new chapter of carnage and demonic horror.",
+        "director": "Sébastien Vaniček",
+        "critics_consensus": "Sébastien Vaniček spills guts with glory in this latest installment of Evil Dead, featuring the meanest, nastiest, and ickiest chapter that is sure to leave fans with a wickedly satisfying Burn for more."
+    },
+    {
+        "id": 4,
+        "ranking": 4,
+        "name": "The Invite",
+        "tomatometer": "🍅🍅🍅🍅🍅🍅🍅🍅🍅",
+        "rating": 97,
+        "img": "/images/movies/movie-4.png",
+        "description": "Joe and Angela's marriage is on thin ice. When they invite their enigmatic upstairs neighbors over for dinner, the evening spirals into unexpected and increasingly bizarre events.",
+        "director": "Olivia Wilde",
+        "critics_consensus": "Perversely funny while giving its quartet of fine actors some of their best material yet, The Invite is a sophisticated farce that reaffirms Olivia Wilde as one of the most exciting filmmakers working today."
+    },
+    {
+        "id": 5,
+        "ranking": 5,
+        "name": "Obsession",
+        "tomatometer": "🍅🍅🍅🍅🍅🍅🍅🍅",
+        "rating": 84,
+        "img": "/images/movies/movie-5.png",
+        "description": "A hopeless romantic's wish comes true in the worst possible way, turning an ideal romance into a disturbing nightmare as obsession spirals out of control.",
+        "director": "Curry Barker",
+        "critics_consensus": "Taking an icky conceit and twisting it to deviously crowd-pleasing ends, Obsession is dauntingly disturbing while also skillfully amusing and thrilling."
+    }
+]

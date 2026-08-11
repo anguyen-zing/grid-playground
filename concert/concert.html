@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Comparison: Concert Prices</title>
+    <link rel="stylesheet" href="/concert/concert.css">
+
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="/concert/concert.js" defer></script>
+</head>
+
+<body>
+    <main class="dashboard">
+
+        <header class="dashboard_header">
+            <p class="dashboard_label"> Data Reconciliation</p>
+            <h1>Concert Ticket Prices</h1>
+        </header>
+
+        <section class="controls_section" aria-label="Reconciliation controls">
+            <div class="control_group">
+                <label for="discrepancy_threshold"> Review Threshold </label>
+                <select id="discrepancy_threshold">
+                    <option value="0"> All discrepancies </option>
+                    <option value="10"> $10 or more </option>
+                    <option value="25" selected> $25 or more </option>
+                    <option value="50"> $50 or more </option>
+                    <option value="100"> $100 or more </option>
+                </select>
+            </div>
+
+            <div class="control_group">
+                <label for="status_filter"> Best Pricing Source </label>
+
+                <select id="status_filter">
+                    <option value="All"> All records </option>
+                    <option value="Resale"> Resale </option> 
+                    <option value="Venue"> Venue </option>
+                    <option value="No difference"> No difference</option>
+                    <option value="Missing Resale Record"> Missing resale record </option>
+                </select>
+            </div>
+
+            <button id="reset_filters_button" type="button"> Reset Filters </button>
+            <button id="export_button" type="button"> Export JSON </button>
+        </section>
+
+        <section class="grid_section">
+            <zing-grid id="reconciliation-grid" caption="Concert Ticket Price Reconciliation" sort filter pager page-size="10">
+                <zg-colgroup>
+                    <zg-column index="id" header="Ticket ID" align="center"></zg-column>
+                    <zg-column index="artist" header="Artist" align="center"></zg-column>
+                    <zg-column index="venue" header="Venue" align="center"></zg-column>
+                    <zg-column index="venue_price_display" header="Venue Price" align="center"></zg-column>
+                    <zg-column index="resale_price_display" header="Resale Price" align="center"></zg-column>
+                    <zg-column index="absolute_difference_display" header="Discrepancy" align="center" cell-class="flag_discrepancy"></zg-column>
+                    <zg-column index="percentage_difference_display" header="Difference Percentage" align="center"></zg-column>
+                    <zg-column index="recommended_price_display" header="Best Price" align="center"></zg-column>
+                    <zg-column index="status" header="Best Pricing" align="center" cell-class="flag_pricing_source"></zg-column>
+                    <zg-column index="requires_review_display" header="Requires Review" align="center" cell-class="flag_review"></zg-column>
+                </zg-colgroup>
+            </zing-grid>
+        </section>
+    </main>
+</body>
+</html>

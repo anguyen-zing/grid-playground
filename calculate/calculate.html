@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Values</title>
+    <link rel="stylesheet" href="/calculate/calculate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <script nonce="undefined" src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="/calculate/calculate.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="calc-toolbar">
+
+            <label>
+                Column:
+                <select id="calcColumn">
+                    <option value="cost">Cost of Trip</option>
+                    <option value="duration">Duration</option>
+                    <option value="distance">Distance</option>
+                    <option value="numStops">Number of Layovers</option>
+                    <option value="satisfaction">Overall Rating</option>
+                </select>
+            </label>
+
+            <label>
+                Operation:
+                <select id="calcOp">
+                    <option value="sum">Sum</option>
+                    <option value="difference">Difference</option>
+                    <option value="avg">Average</option>
+                    <option value="min">Min</option>
+                    <option value="max">Max</option>
+                </select>
+            </label>
+
+            <button id="calcBtn">
+                Calculate
+            </button>
+
+            <button id="resetBtn">
+                Reset
+            </button>
+
+        </div>
+
+        <zing-grid class="travel-grid" id="travel-grid" row-selector gridlines="both" layout-controls="disabled"
+            layout="row" sort>
+            <zg-data id="travel-data" data='[
+                { "trip": "Tokyo Getaway", "cost": 2450, "duration": 7, "distance": 6742,  "numStops": 1, "satisfaction": 9.2 },
+                { "trip": "Paris Weekend", "cost": 980,  "duration": 3, "distance": 3625,  "numStops": 0, "satisfaction": 8.7 },
+                { "trip": "Bali Retreat", "cost": 1750, "duration": 10, "distance": 9435,  "numStops": 2, "satisfaction": 9.5 },
+                { "trip": "NYC Business Trip", "cost": 1200, "duration": 4,  "distance": 2445,  "numStops": 0, "satisfaction": 7.1 },
+                { "trip": "Iceland Road Trip", "cost": 3100, "duration": 8,  "distance": 4180,  "numStops": 1, "satisfaction": 9.8 },
+                { "trip": "Cancun Beach Escape", "cost": 1450, "duration": 5,  "distance": 1650,  "numStops": 0, "satisfaction": 8.3 },
+                { "trip": "Rome Historical Tour", "cost": 1600, "duration": 6,  "distance": 4900,  "numStops": 1, "satisfaction": 9.0 },
+                { "trip": "Cape Town Safari", "cost": 3800, "duration": 12, "distance": 10225, "numStops": 2, "satisfaction": 9.6 },
+                { "trip": "Sydney Adventure", "cost": 2900, "duration": 9,  "distance": 8200,  "numStops": 1, "satisfaction": 8.9 },
+                { "trip": "Machu Picchu Trek", "cost": 2100, "duration": 7,  "distance": 3980,  "numStops": 1, "satisfaction": 9.4 },
+                { "trip": "Amsterdam City Break", "cost": 850,  "duration": 3,  "distance": 3660,  "numStops": 0, "satisfaction": 8.5 },
+                { "trip": "Dubai Luxury Stay", "cost": 4200, "duration": 6,  "distance": 6890,  "numStops": 0, "satisfaction": 9.1 },
+                { "trip": "Costa Rica Ecotour", "cost": 1900, "duration": 8,  "distance": 2340,  "numStops": 1, "satisfaction": 9.3 },
+                { "trip": "Vancouver Nature Trip", "cost": 1100, "duration": 5,  "distance": 1900,  "numStops": 0, "satisfaction": 8.6 },
+                { "trip": "Bangkok Street Food Tour", "cost": 900, "duration": 4, "distance": 8420, "numStops": 1, "satisfaction": 8.8 }
+            ]'>
+            </zg-data>
+
+            <zg-colgroup>
+                <zg-column index="trip" header="Trip"></zg-column>
+                <zg-column index="cost" header="Cost of Trip in $" align="center" type="number"
+                    foot-cell="avg"></zg-column>
+                <zg-column index="duration" header="Duration (in days)" align="center" type="number"></zg-column>
+                <zg-column index="distance" header="Distance (in miles)" align="center" type="number"></zg-column>
+                <zg-column index="numStops" header="Number of Layovers" align="center" type="number"></zg-column>
+                <zg-column index="satisfaction" header="Overall Rating" align="center" type="number"></zg-column>
+            </zg-colgroup>
+        </zing-grid>
+
+        <template id="calcModalTemplate">
+            <div class="calc-modal-overlay">
+                <div class="calc-modal">
+                    <button class="calc-modal-close" id="closeCalcModal">×</button>
+
+                    <h2>Calculate Selected Values</h2>
+
+                    <div id="selectedValues"></div>
+
+                    <label for="modalCalcOp">Calculation</label>
+
+                    <select id="modalCalcOp">
+                        <option value="sum">Sum</option>
+                        <option value="difference">Difference</option>
+                        <option value="avg">Average</option>
+                        <option value="min">Min</option>
+                        <option value="max">Max</option>
+                    </select>
+
+                    <button id="modalCalculateBtn">
+                        Calculate
+                    </button>
+
+                    <div id="modalCalcResult"></div>
+                </div>
+            </div>
+        </template>
+
+    </main>
+</body>
+
+</html>

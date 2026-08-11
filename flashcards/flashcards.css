@@ -1,0 +1,145 @@
+:root {
+    --font-family: "Outfit", sans-serif;
+}
+
+.flashcard-container {
+    display: grid;
+
+    height: 100vh;
+    align-items: start;
+}
+
+zg-row {
+    border-radius: 10px;
+    transition: width .25s ease;
+}
+
+zg-row:hover {
+    cursor: pointer;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+zg-row[layout="card"] span {
+    display: none;
+}
+
+zg-cell:nth-child(1) {
+    color: rgb(37, 119, 201);
+    font-family: var(--font-family);
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+zg-cell:nth-child(2) {
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+zg-cell:nth-child(3) {
+    font-family: var(--font-family);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* ==== Slider Styling ==== */
+
+div[data-field-index="tag"] {
+    border-radius: 50px;
+    background: rgb(106, 169, 170);
+    color: #ffffff;
+
+    padding: 5px 10px;
+}
+
+div[has-details] {
+    text-decoration: none !important;
+}
+
+div[has-details][data-field-index="title"] {
+    color: rgb(37, 119, 201) !important;
+}
+
+div[has-details][data-field-index="content"] {
+    color: black !important;
+}
+
+.card-size-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-family: var(--font-family);
+}
+
+.card-size-controls input[type="range"] {
+    appearance: none;
+    width: 180px;
+    height: 6px;
+    border-radius: 999px;
+    background: #d9d9d9;
+    outline: none;
+}
+
+.card-size-controls input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2577c9;
+    cursor: pointer;
+}
+
+.card-size-controls input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 50%;
+    background: #2577c9;
+    cursor: pointer;
+}
+
+/* ======== Template + Dialog Panel Styling ======== */
+
+zg-dialog::part(dialog) {
+    background: rgba(128, 128, 128, 0.387);
+    box-shadow: none;
+}
+
+zg-dialog::part(form) {
+    box-shadow: none;
+    padding: auto 2%;
+    border-radius: 15px;
+}
+
+zg-dialog::part(header-label) {
+    opacity: 0;
+}
+
+zg-dialog::part(header-close) {
+    border-radius: 50%;
+    color: red;
+    font-weight: bold;
+    box-shadow: rgba(225, 225, 225, 0.05) 0px 0px 0px 1px;
+}
+
+zg-dialog::part(header-close):hover {
+    font-weight: bolder;
+    box-shadow:
+        rgba(115, 115, 115, 0.15) 0px 1px 3px,
+        rgba(115, 115, 115, 0.15) 0px 2px 4px;
+}
+
+zg-dialog::part(body),
+zg-dialog::part(footer) {
+    border: none;
+}
+
+zg-dialog::part(footer-confirm) {
+    border-radius: 20px;
+    font-family: var(--font-family);
+}
+
+zg-dialog::part(footer-confirm):hover {
+    background: #0f61b4;
+}

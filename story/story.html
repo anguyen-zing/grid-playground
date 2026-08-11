@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Own Adventure Story</title>
+    <link rel="stylesheet" href="/story/story.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+</head>
+
+<body>
+    <header class="page-header">
+        <div class="eyebrow">An Interactive Log</div>
+
+        <h1>An Outdoor Adventure</h1>
+
+        <p class="sub">
+            Every choice narrows the grid to the path you have actually walked.
+            Nothing you did not choose stays on the page.
+        </p>
+    </header>
+
+    <main>
+        <section class="trail-section" aria-label="Current story path">
+            <div class="trail" id="trail"></div>
+        </section>
+
+        <section class="story-section">
+            <zing-grid id="storyGrid" caption="Adventure Log" layout="row" viewport-stop pager="false" search="false"
+                sort="false" filter="false" selector="false" row-details row-details-renderer="renderChapter">
+                <zg-colgroup>
+                    <zg-column index="chapter" header="Chapter" width="130"></zg-column>
+
+                    <zg-column index="title" header="Adventure Log"></zg-column>
+                </zg-colgroup>
+            </zing-grid>
+        </section>
+
+        <div class="restart-container">
+            <button class="restart-btn" id="restartBtn" type="button">
+                Begin Again
+            </button>
+        </div>
+    </main>
+
+    <script src="/story/story.js" defer></script>
+</body>
+
+</html>

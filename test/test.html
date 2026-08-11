@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ZingGrid: Blank Grid</title>
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+    <link rel="stylesheet" href="/test/test.css">
+</head>
+
+<body>
+    <zing-grid caption="Top Tomatoes: Movies" columns-control column-drag layout-controls pager page-size="5"
+        page-size-options="2,4,8" search sort src="/jsons/top-movies.json">
+        <zg-colgroup>
+            <zg-column index="ranking" cell-class="ranking"></zg-column>
+            <zg-column index="name" cell-class="movie-name"></zg-column>
+             <zg-column index="img" cell-class="movie-poster" header="" 
+                       menu-text="Img" type="image" sort="disabled"
+                       content-width="150px">
+                    </zg-column>
+            <zg-column index="tomatometer" cell-class="tomatometer"></zg-column>
+            <zg-column index="rating" cell-class="rating"></zg-column>
+            <zg-column index="director" cell-class="director"></zg-column>
+            <zg-column index="description" cell-class="description"></zg-column>
+            <zg-column index="critics_consensus" cell-class="critics_consensus"></zg-column>
+        </zg-colgroup>
+    </zing-grid>
+</body>
+
+</html>

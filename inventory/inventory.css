@@ -1,0 +1,17 @@
+.inventory-wrapper {
+    width: 100%;
+    padding: 2rem;
+}
+
+.inventory-products {
+    width: 100%;
+}
+
+zing-grid {
+    width: 100%;
+    min-height: 500px;
+}
+
+zg-pager .zg-pager-inner::part(inner) {
+    display: none;
+}

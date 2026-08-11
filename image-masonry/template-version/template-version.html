@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Masonry with Template Preview</title>
+    <link rel="stylesheet" href="/image-masonry/template-version/template-version.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        crossorigin="anonymous">
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+</head>
+
+<body>
+    <main class="gallery-wrap">
+        <zing-grid class="masonry" caption="Image Masonry Previews" layout="card" layout-controls="disabled">
+            <zg-data data='[
+                {
+                  "image": "https://images.unsplash.com/photo-1768541089409-7d3c0bc386eb?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Mount Fuji from Fujieda",
+                  "caption": "A Journey Through Japan&#39;s Scenic Heart",
+                  "description": "Discover the beauty of Mount Fuji from Fujieda, where peaceful landscapes, local culture, and unforgettable views come together to create an authentic Japanese experience.
+                                    Standing in the Fujieda area offers a unique perspective on Japan&#39;s most iconic landmark, Mount Fuji. Away from the busiest tourist destinations, Fujieda provides a quieter, 
+                                    more relaxed atmosphere where visitors can appreciate the mountain&#39;s grandeur while experiencing the charm of everyday Japanese life. Whether viewed from a scenic overlook, 
+                                    a countryside road, or during a peaceful morning stroll, Mount Fuji serves as a breathtaking backdrop that changes with the seasons and the time of day. Beyond the spectacular 
+                                    scenery, Fujieda is known for its welcoming community, rich tea-growing heritage, and delicious local cuisine.",
+                   "link": "https://www.japan.travel/en/fuji-guide/mt-fuji-more-than-a-mountain/"
+                },
+                {
+                  "image": "https://images.unsplash.com/photo-1782312670231-c85d28b71d84?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDk4fDZzTVZqVExTa2VRfHxlbnwwfHx8fHw%3D",
+                  "title": "Lotus Flower",
+                  "caption": "Grace and beauty rising above the water",
+                  "description": "The lotus flower has been admired for centuries, symbolizing resilience, renewal, and inner peace across many cultures. What makes it especially remarkable
+                                  is its ability to emerge from muddy waters while remaining clean and vibrant. If you&#39;re hoping to photograph lotus blooms, visit botanical gardens or ponds
+                                  during the early morning when the flowers are fully open and the lighting is soft. Their elegant symmetry and delicate colors make them a favorite subject
+                                  for both photographers and artists.",
+                   "link": "https://www.bbg.org/article/plant_profile_sacred_lotus_nelumbo_nucifera"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1631119460926-c099d59f963c?q=80&w=2305&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Table & Chairs & Coffee",
+                  "caption": "Coffee Reviews: Here are my takes on ...",
+                  "description": "I stopped by this café on a quiet weekday morning, expecting an average cup of coffee, but left pleasantly surprised. The house-roasted medium blend was
+                                  smooth with subtle chocolate and caramel notes, balanced by just enough acidity to keep each sip interesting. Seating is plentiful, with a mix of communal
+                                  tables and comfortable window-side chairs that make it easy to settle in for an hour or two. The pastries are fresh, though slightly overpriced, and the
+                                  service strikes a nice balance between friendly and efficient. If you&#39;re looking for a cozy place to work, catch up with a friend, or simply enjoy a well-made
+                                  latte, this café is worth adding to your regular rotation. Overall rating: 4.5 stars",
+                   "link": "https://sandiego.eater.com/maps/best-coffee-shops-roasters-cafes-san-diego"
+                },
+                {
+                  "image": "https://plus.unsplash.com/premium_photo-1785079919137-cbf5efb72ddb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Pacific North West",
+                  "caption": "Misty forests, rugged coasts, endless adventure",
+                  "description": "Few places capture the feeling of untamed wilderness quite like the Pacific Northwest. Towering evergreen forests, snow-capped mountains, and dramatic
+                                  coastlines make it one of North America&#39;s most rewarding destinations for outdoor enthusiasts. If you&#39;re planning a trip, start with Olympic National
+                                  Park for its rainforests and beaches, then head to Mount Rainier National Park for alpine hiking and wildflower meadows. In Oregon, Cannon Beach is famous
+                                  for Haystack Rock and spectacular sunsets, while Crater Lake National Park offers some of the clearest blue water you&#39;ll ever see. Don&#39;t skip cities
+                                  like Seattle or Portland either—they&#39;re excellent bases for exploring the region while offering incredible coffee, local breweries, and thriving food
+                                  scenes. Spring and early fall are generally the best times to visit, with fewer crowds and comfortable temperatures. Whether you&#39;re hiking, kayaking,
+                                  or simply driving scenic highways, the Pacific Northwest rewards travelers who slow down and explore beyond the major attractions.",
+                   "link": "https://www.jasminealley.com/pacific-northwest-roadtrip/"
+              },
+              {
+                  "image": "https://images.unsplash.com/photo-1785438187797-e9b74f9ae635?q=80&w=3041&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "The Galaxy Above Us",
+                  "caption": "Countless stars beyond our imagination",
+                  "description": "On a clear night far from city lights, it&#39;s easy to understand why humans have looked to the stars for thousands of years. Familiar constellations like
+                                  Orion, Ursa Major, Cassiopeia, and Scorpius have guided explorers, inspired myths, and helped astronomers map the night sky. Modern stargazing reveals even
+                                  more—star clusters, distant galaxies, colorful nebulae, and the faint band of the Milky Way stretching overhead. If you\u0027re just getting started, download
+                                  a star map app or visit a designated dark-sky park where light pollution is minimal. A simple pair of binoculars is often enough to spot Jupiter&#39;s moons,
+                                  the Andromeda Galaxy, or the craters of our own Moon. Every season brings new constellations into view, making the night sky an ever-changing landscape that
+                                  rewards patience, curiosity, and a willingness to simply look up.",
+                   "link": "https://www.constellation-guide.com"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1545324053-41b04f1a8e8a?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Street Food - A Dying Cuisine Art",
+                  "caption": "Authentic flavors served fresh every day",
+                  "description": "Street food represents far more than inexpensive meals—it&#39;s often the culinary heart of a city. Family recipes passed down through generations create dishes
+                                  that rarely appear in restaurants, offering visitors an authentic taste of local culture. Unfortunately, stricter regulations, rising operating costs, and urban
+                                  redevelopment have made it increasingly difficult for many vendors to survive. When traveling, seek out busy stalls with high turnover and plenty of local
+                                  customers. Not only are they usually the safest choices, but they&#39;re often where you will find the most memorable meals of your trip.",       
+                   "link": "https://en.wikipedia.org/wiki/Street_food"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?q=80&w=2790&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Flat Iron Building",
+                  "caption": "An iconic landmark in the heart of Manhattan.",
+                  "description": "Standing proudly at a unique triangular intersection, the Flat Iron Building remains one of New York City&#39;s most recognizable architectural masterpieces.
+                                  Its timeless design and historic significance continue to attract visitors from around the world.",
+                   "link": "https://www.corcoran.com/building/flatiron/729713"
+                },
+               {
+                  "image": "https://plus.unsplash.com/premium_photo-1697730023045-189b87aa120a?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Whale Watching",
+                  "caption": "A Guide to Finding the Best Times",
+                  "description": "Whale watching can be one of the most unforgettable wildlife experiences, but choosing the right tour makes all the difference. Look for operators that follow
+                                  responsible wildlife viewing guidelines and maintain respectful distances from marine animals. Depending on the season, you may encounter humpback whales, gray whales,
+                                  or even orcas. Bring binoculars, dress warmly, and keep your camera ready—the best sightings often happen when you least expect them. Patience is part of the experience,
+                                  but when a whale breaches the surface, every minute spent waiting becomes worthwhile.",
+                   "link": "https://stellwagen.noaa.gov/visit/whalewatching/tips.html"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1584801096196-592feb269e31?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Hidden Bookstores",
+                  "caption": "Lose yourself between timeless pages",
+                  "description": "Independent bookstores are more than places to buy books. They are quiet spaces filled with character, carefully curated collections, and stories waiting to be discovered.
+                                   Tucked away on side streets or inside historic buildings, these hidden gems often reflect the personalities of the communities they serve and provide a peaceful escape
+                                   from busy city life. Exploring local bookshops can lead to unexpected literary finds, thoughtful conversations with passionate booksellers, and cozy reading corners that
+                                   invite visitors to linger a little longer. Whether you are searching for rare editions, beautifully illustrated novels, or your next favorite author, every hidden bookstore
+                                   offers a unique experience worth remembering.",
+                   "link": "https://www.atlasobscura.com/articles/beautiful-bookstores"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1689934402781-f8672d269143?q=80&w=994&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Vintage Film Photography",
+                  "caption": "Capturing memories one frame at a time",
+                  "description": "Film photography offers a timeless way to preserve moments with rich colors, natural grain, and an unmistakable sense of nostalgia. Unlike digital cameras, every frame on a
+                                   roll is intentional, encouraging photographers to slow down, carefully compose each shot, and appreciate the beauty of the present instead of chasing perfection.
+                                   Whether you are experimenting with a disposable camera or a classic 35mm SLR, shooting on film transforms ordinary scenes into lasting memories. From developing negatives
+                                   to scanning prints, the entire process becomes part of the creative journey, making each photograph feel uniquely personal and impossible to recreate exactly.",
+                   "link": "https://www.ilfordphoto.com/"
+               },
+               {
+                  "image": "https://plus.unsplash.com/premium_photo-1678903964473-1271ecfb0288?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI1fHx8ZW58MHx8fHx8",
+                  "title": "Why Modern Architecture Sucks",
+                  "caption": "A debate about form versus function",
+                  "description": "Critics of modern architecture often argue that today&#39;s buildings prioritize efficiency over personality. Glass towers and minimalist facades can sometimes feel
+                                  interchangeable, lacking the intricate ornamentation and craftsmanship that define older structures. Supporters counter that contemporary architecture embraces sustainability,
+                                  flexible spaces, and innovative materials that older designs simply couldn&#39;t achieve. The truth likely lies somewhere in between. While not every modern building is
+                                  inspiring, neither was every historic one. The most successful architecture—regardless of era—is memorable because it responds thoughtfully to its surroundings while creating
+                                  spaces people genuinely enjoy using.",
+                   "link": "https://www.currentaffairs.org/news/2017/10/why-you-hate-contemporary-architecture"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1733959541069-1a289a05a59f?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Critic&#39;s Travels",
+                  "caption": "",
+                  "description": "Great trips aren\u0027t defined by how far you travel but by the experiences you collect along the way. Build flexibility into your itinerary, leave room for spontaneous
+                                  discoveries, and don\u0027t feel pressured to check every attraction off a list. Some of the best travel memories come from wandering unfamiliar neighborhoods, chatting with
+                                  locals, or stumbling upon a small café that never appears in guidebooks. Slow travel often proves far more rewarding than trying to see everything in a single visit.",
+                   "link": "https://www.thewalkingcritic.com/work-with-me/"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1739134472894-16f657cb1aff?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Vintage Finds: A Guide to Antique Shopping",
+                  "caption": "Hidden treasures waiting to be discovered...",
+                  "description": "Antique shopping rewards patience more than luck. The best stores aren&#39;t always the largest—they&#39;re the ones curated by owners who know the stories
+                                  behind each piece. Don&#39;t rush through the aisles; inspect furniture for craftsmanship, look for maker&#39;s marks on ceramics, and don&#39;t be afraid
+                                  to ask questions. Flea markets can offer incredible bargains, while specialty antique stores usually provide better provenance and restoration. Remember to
+                                  measure your space before buying larger pieces, and if something catches your eye, don&#39;t wait too long. Truly unique finds rarely stay on the shelf
+                                  for long.",
+                   "link": "https://theantiquedjourney.com/treasure-hunting-101-your-beginners-guide-to-antiquing/"
+               },
+                {
+                   "image": "https://images.unsplash.com/photo-1690078569524-167886736aae?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMxfHx8ZW58MHx8fHx8",
+                   "title": "Convenience Stores: A Look Inside",
+                   "caption": "Everyday essentials just around the corner",
+                   "description": "Convenience stores rarely receive much attention, but they\u0027re fascinating snapshots of local culture. Compare a neighborhood store in Japan with one
+                                   in the United States or South Korea, and you\u0027ll quickly notice how product selections reflect regional tastes and lifestyles. Some stores have become
+                                   destinations in their own right, offering surprisingly good prepared meals, fresh coffee, and local specialties. While prices are usually higher than
+                                   supermarkets, the convenience and accessibility make them indispensable for busy commuters and travelers alike.",
+                   "link": "https://www.byfood.com/blog/culture/guide-to-konbini-japanese-convenience-stores"
+               },
+               {
+                  "image": "https://plus.unsplash.com/premium_photo-1683147864503-e96f9b30db56?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Best Ice Cream to Try",
+                  "caption": "Sweet scoops worth every delicious bite",
+                  "description": "Ice cream is one of the world&apos;s most beloved desserts, offering endless combinations of flavors, textures, and creative toppings. From timeless classics like
+                                   vanilla, chocolate, and strawberry to adventurous options featuring matcha, salted caramel, pistachio, or tropical fruits, every destination has its own signature
+                                   frozen treat worth sampling.\n\nWhether you visit a neighborhood creamery or a famous dessert shop while traveling, trying local specialties can become a memorable
+                                   part of the experience. Seasonal ingredients, handcrafted recipes, and regional flavors often create unique desserts that cannot be found anywhere else, making
+                                   each scoop a small taste of local culture.",
+                   "link": "https://www.tasteatlas.com/best-rated-ice-creams-in-the-world"
+               },
+               {
+                  "image": "https://plus.unsplash.com/premium_photo-1774048161288-cb4583c4b83f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "The Art of Slow Living",
+                  "caption": "",
+                  "description": "Slow living is a lifestyle that values quality over quantity and presence over constant productivity. It encourages creating space for meaningful routines, enjoying simple
+                                   pleasures, and focusing on experiences rather than rushing through daily responsibilities. Small habits like preparing a homemade meal, taking a walk, or reading without
+                                   distractions can transform an ordinary day into a fulfilling one. Embracing a slower pace does not mean accomplishing less. Instead, it means being intentional with your
+                                   time, prioritizing what truly matters, and finding balance in a fast moving world. By practicing mindfulness and appreciating life&#39;s quieter moments, many people
+                                   discover greater creativity, gratitude, and overall well being.",
+                   "link": "https://www.sloww.co/"
+               },
+               {
+                  "image": "https://plus.unsplash.com/premium_photo-1778527278994-e2114e07e3ad?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Europe & Geography",
+                  "caption": "Exploring cultures across an interconnected continent",
+                  "description": "Europe&#39;s geography explains much of its incredible cultural diversity. Mountain ranges like the Alps have shaped borders and traditions, while rivers
+                                  such as the Rhine and Danube have connected cities through trade for centuries. A rail journey across Europe is one of the best ways to appreciate these
+                                  contrasts, moving from Mediterranean coastlines to Alpine villages and historic capitals within a matter of hours. While destinations like Paris, Rome,
+                                  and Amsterdam deserve their reputation, don&#39;t overlook smaller cities like Ljubljana, Ghent, or Porto, where you&#39;ll often find fewer crowds and
+                                  equally memorable experiences.",
+                   "link": "https://home.uncg.edu/~jwjones/moderneurope/GeographicOverview.htm"
+               },
+               {
+                  "image": "https://images.unsplash.com/photo-1623674448275-fbf51cc8268d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  "title": "Dark Side of the Moon",
+                  "caption": "Exploring the mysteries hidden beyond the moonlight",
+                  "description": "The Moon has fascinated humanity for thousands of years, but its far side remains one of the most mysterious places in our solar system. Contrary to popular belief,
+                                   the dark side is not permanently dark. It simply refers to the hemisphere that always faces away from Earth because the Moon is tidally locked. This
+                                   distant landscape is filled with towering craters, rugged mountains, and ancient impact basins that reveal billions of years of cosmic history. Modern space
+                                   missions have provided incredible new perspectives of this hidden world. Scientists continue to study its unique geology to better understand how the Moon formed
+                                   and how our solar system evolved. Every new discovery reminds us that even our closest celestial neighbor still holds countless secrets waiting to be explored.",       
+                   "link": "https://science.nasa.gov/moon/"
+               }
+           ]'>
+            </zg-data>
+
+            <zg-colgroup>
+                <zg-column index="image" header="Picture" type="image" details-template="imageDetails">
+                </zg-column>
+                <zg-column index="title" details-template="imageDetails"></zg-column>
+                <zg-column index="caption" details-template="imageDetails"></zg-column>
+            </zg-colgroup>
+        </zing-grid>
+
+        <template id="imageDetails">
+            <div style="display:flex; justify-content:center;">
+                <img src="[[record.image]]" alt="" style="width:100%; max-width:400px; height:auto;">
+            </div>
+
+            <h1 style="font-size:1.5rem;">[[record.title]]</h1>
+
+            <h2 style="font-size:1.25rem;"><i>[[record.caption]]</i></h2>
+
+            <p style="font-size:1rem;">[[record.description]]</p>
+            
+            <span style="font-size:0.75rem;">
+                <span style="color:rgb(47, 169, 169)">Learn More Here:</span>
+                [[record.link]]
+            </span>
+        </template>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Choose Your Own Adventure Story </title>
+    <link rel="stylesheet" href="/adventure_story/adventure_story.css">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/zinggrid/zinggrid.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="eyebrow">An Interactive Log</div>
+        <h1>An Outdoor Adventure</h1>
+        <p class="sub">Every choice narrows the grid to the path you've actually walked. Nothing you didn't choose stays
+            on the page.</p>
+    </header>
+
+    <div class="trail" id="trail"></div>
+    <div id="logbook"></div>
+    <button class="restart-btn" id="restartBtn">Begin Again</button>
+
+    <template id="chapter-template">
+        <article class="chapter">
+            <div class="chapter-art"></div>
+            <div class="chapter-num"></div>
+            <div class="chapter-title"></div>
+            <div class="chapter-text"></div>
+            <div class="choices"></div>
+        </article>
+    </template>
+
+    <!-- ZingGrid will hold the story data and renders the current visible chapter list. -->
+    <zing-grid id="storyGrid" style="display:none;">
+        <template slot="row-details">
+            <div class="story-detail">
+                <div class="chapter-art">{{art}}</div>
+                <div class="chapter-title">{{title}}</div>
+                <div class="chapter-text">{{text}}</div>
+            </div>
+        </template>
+    </zing-grid>
+
+
+    <script src="/adventure_story/adventure_story.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="/flashcards/flip.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="/flashcards/flip.js" defer></script>
+</head>
+
+<body>
+    <div class="card-size-controls">
+        <label for="cardSize">Card Sizes:</label>
+
+        <span>Large</span>
+
+        <input type="range" id="cardSize" min="1" max="6" step="1" value="4">
+
+        <span>Small</span>
+    </div>
+    <main class="flashcard-container">
+        <zing-grid class="section-one" caption="" layout="card" layout-controls="disabled">
+            <zg-data data='[
+           {
+                "title": "Photosynthesis", 
+                "content": "How do plants convert sunlight into energy?",
+                "back": "Photosynthesis is the process where plants use sunlight, water, and carbon dioxide to produce glucose and oxygen.",
+                "example": "Plants absorb sunlight with chlorophyll in their leaves.",
+                "tag": "biology"
+            },
+
+            {
+                "title": "Pythagorean Theorem", 
+                "content": "What equation relates the sides of a right triangle?",
+                "back": "a² + b² = c², where c is the hypotenuse.",
+                "example": "3² + 4² = 5²",
+                "tag": "math"
+            },
+
+            {
+                "title": "Newton&#39;s First Law", 
+                "content": "What happens to an object when no net force acts on it?",
+                "back": "An object remains at rest or continues moving at constant velocity unless acted upon by an external force.",
+                "example": "A hockey puck slides across smooth ice until friction slows it.",
+                "tag": "physics"
+            },
+
+            {
+                "title": "Mitosis Process", 
+                "content": "Mitosis is the process by which a single ________ cell divides to produce ________ genetically ________ daughter cells.",
+                "back": "Mitosis is the process by which a single parent cell divides to produce two genetically identical daughter cells.",
+                "example": "Skin cells use mitosis to make new cells when a cut heals.",
+                "tag": "biology"
+            },
+
+            {
+                "title": "Planets",
+                "content": "Multiple Choice:\n\nWhich planet is known as the Red Planet?\n\nA. Venus\nB. Mars\nC. Jupiter\nD. Saturn",
+                "back": "B. Mars\n\nMars appears red because of iron oxide (rust) on its surface.",
+                "example": "NASA&#39;s Perseverance rover is currently exploring Mars.",
+                "tag": "misc."
+            },
+
+            {
+                "title": "Grammar",
+                "content": "Fill in the blanks:\n\nA ________ is a comparison between two unlike things using the words &#39;like&#39; or &#39;as&#39;. It helps readers create vivid ________ while reading.",
+                "back": "A simile is a comparison between two unlike things using the words &#39;like&#39; or &#39;as&#39;. It helps readers create vivid imagery while reading.",
+                "example": "He ran like the wind is a simile.",
+                "tag": "english"
+            },
+
+            {
+                "title": "Geography",
+                "content": "True or False:\n\nThe Great Wall of China was built entirely during a single dynasty.",
+                "back": "False.\n\nThe wall was built and expanded over several dynasties spanning many centuries.",
+                "example": "Much of the wall visitors see today was rebuilt during the Ming Dynasty.",
+                "tag": "history"
+            },
+
+
+            {
+                "title": "Art Analysis",
+                "content": "Critical Thinking:\n\nHow can an artist use lighting to change the mood of a painting?",
+                "back": "Bright lighting can create an energetic or cheerful mood, while dark lighting can create a dramatic or mysterious mood.",
+                "example": "A scene with strong shadows may feel more dramatic than one with bright, even lighting.",
+                "tag": "art"
+            },
+            
+
+            {
+                "title": "Newton&#39;s Third Law",
+                "content": "Short Answer:\n\nWhat is Newton&#39;s Third Law of Motion?",
+                "back": "For every action, there is an equal and opposite reaction.",
+                "example": "A rocket moves upward because the exhaust gases are pushed downward.",
+                "tag": "physics"
+            },
+
+            {
+                "title": "Atom",
+                "content": "Definition:\n\nWhat is an atom?",
+                "back": "An atom is the smallest unit of an element that retains the chemical properties of that element. It consists of protons, neutrons, and electrons.",
+                "example": "A single carbon atom contains 6 protons.",
+                "tag": "chemistry"
+            },
+
+            {
+                "title": "Water Cycle",
+                "content": "Short Answer:\n\nWhat are the main stages of the water cycle?",
+                "back": "Evaporation, condensation, precipitation, and collection.",
+                "example": "Water evaporates from a lake, forms clouds through condensation, and returns as rain.",
+                "tag": "geography"
+            },
+
+            {
+                "title": "Prime Number",
+                "content": "Definition:\n\nWhat is a prime number?",
+                "back": "A prime number is a whole number greater than 1 that has exactly two factors: 1 and itself.",
+                "example": "7 is a prime number because its only factors are 1 and 7.",
+                "tag": "math"
+            },
+
+            {
+                "title": "Chemical Reaction",
+                "content": "Definition:\n\nWhat happens during a chemical reaction?",
+                "back": "Atoms are rearranged to form new substances.",
+                "example": "Iron reacts with oxygen to form rust.",
+                "tag": "chemistry"
+            },
+
+            {
+                "title": "Ancient Rome",
+                "content": "Which language was widely spoken in ancient Rome?\n\nA. Latin\nB. Japanese\nC. Chinese\nD. Sanskrit",
+                "back": "A. Latin.",
+                "example": "Latin influenced many modern languages, including Spanish, French, and Italian.",
+                "tag": "history"
+            },
+
+            {
+                "title": "Main Idea",
+                "content": "Short Answer:\n\nWhat is the main idea of a text?",
+                "back": "The main idea is the central point or most important message of a text.",
+                "example": "In an article about recycling, the main idea might be that recycling helps reduce waste.",
+                "tag": "english"
+            },
+
+            {
+                "title": "Pollution",
+                "content": "Critical Thinking:\n\nHow could reducing plastic waste help an ocean ecosystem?",
+                "back": "Reducing plastic waste can decrease the amount of plastic that enters the ocean and harms marine organisms.",
+                "example": "Sea turtles and other animals can accidentally eat plastic or become trapped in it.",
+                "tag": "environmental-science"
+            }]'>
+            </zg-data>
+
+            <zg-colgroup>
+                <zg-column index="tag" details-template="flashcardContents"></zg-column>
+                <zg-column index="title" details-template="flashcardContents"></zg-column>
+                <zg-column index="content" details-template="flashcardContents"></zg-column>
+            </zg-colgroup>
+        </zing-grid>
+
+        <template id="flashcardContents">
+            <span class="solution-block">
+                <b>Solution:</b>
+                <p> [[record.back]]</p>
+            </span> 
+            <span class="example-block">
+                <b>Example:</b>
+                <p>[[record.example]]</p>
+            </span>
+        </template>
+    </main>
+</body>
+
+</html>

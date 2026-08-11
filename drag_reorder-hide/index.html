@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: Column Drag to Reorder or Hide</title>
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+    <link rel="stylesheet" href="/drag_reorder-hide/drag_reorder-hide.css">
+</head>
+
+<body class="zg-body">
+    <!-- Most features can be toggled on the toplevel zing-grid tag -->
+    <zing-grid caption="Drag Columns to reorder or hide column" columns-control column-drag="columns" column-drag-action="both" 
+        layout="row" layout-controls="disabled" viewport-stop>
+        <!-- dataset -->
+        <zg-data data='[
+      	{ "breed": "Cane Corso", "name": "Ziva"},
+      	{ "breed": "Pug", "name": "Doug"},
+      	{ "breed": "Corgi", "name": "Jenny"},
+      	{ "breed": "Pomeranian", "name": "Koda"},
+      	{ "breed": "Great Dane", "name": "Zeus"},
+      	{ "breed": "Frenchie", "name": "Bruce"},
+      	{ "breed": "Cane Corso", "name": "Sofia"},
+      	{ "breed": "Pomeranian", "name": "Snowball"}
+      ]'></zg-data>
+        <!-- If you don't want to use all columns from dataset, user must define columns here -->
+        <zg-colgroup>
+            <zg-column index="breed" type="select"
+                type-select-options="Cane Corso, Corgi, Frenchie, Great Dane, Pomeranian, Pug"></zg-column>
+            <zg-column index="name" filter="disabled"></zg-column>
+            <zg-column index="breed, name" header="Combined" filter="disabled">
+                <div>[[index.breed]] - [[index.name]]</div>
+            </zg-column>
+        </zg-colgroup>
+    </zing-grid>
+</body>
+
+</html>

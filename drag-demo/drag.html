@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ZingGrid: Blank Grid</title>
+  <script nonce="undefined" src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+  <link rel="stylesheet" href="/drag-demo/drag.css">
+</head>
+
+<body class="zg-body"> <!-- Most features can be toggled on the toplevel zing-grid tag -->
+  <zing-grid caption="Drag and reorder columns" columns-control column-drag column-drag-action="reorder" layout="row"
+    layout-controls="disabled" viewport-stop>
+
+
+    <!-- dataset -->
+    <zg-data data='[ { "breed": "Cane Corso", "name": "Ziva"}, 
+                      { "breed": "Pug", "name": "Doug"},      	
+                      { "breed": "Corgi", "name": "Jenny"},      	
+                      { "breed": "Pomeranian", "name": "Koda"},      	
+                      { "breed": "Great Dane", "name": "Zeus"},      	
+                      { "breed": "Frenchie", "name": "Bruce"},      	
+                      { "breed": "Cane Corso", "name": "Sofia"},      	
+                      { "breed": "Pomeranian", "name": "Snowball"}]'>
+    </zg-data>
+
+    <!-- If you don't want to use all columns from dataset, user must define columns here -->
+    <zg-colgroup>
+      <zg-head-cell cellindex="0" role="columnheader" icon-position="left">
+        <zg-icon class="zg-head-icon" slot="left" name="drag" sort-desc=""><svg id="svg--134335" slot="icon"
+            viewBox="0 0 24 24">
+            <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>
+          </svg></zg-icon>
+
+      </zg-head-cell>
+
+
+      <zg-column index="breed" type="select"
+        type-select-options="Cane Corso, Corgi, Frenchie, Great Dane, Pomeranian, Pug">
+      </zg-column>
+      <zg-column index="name" filter="disabled"></zg-column>
+      <zg-column index="breed" header="Combined" filter="disabled">
+        <div>[[record.breed]] - [[record.name]]</div>
+      </zg-column>
+    </zg-colgroup>
+  </zing-grid>
+
+  <script>
+    ZingGrid.setLicense(['26ccbfec16b8be9ee98c7d57bee6e498']);  
+  </script>
+
+  <script src="/drag-demo/drag.js"></script>
+</body>
+
+</html>

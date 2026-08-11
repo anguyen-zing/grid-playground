@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory</title>
+
+    <link href="/inventory/inventory.css" rel="stylesheet">
+
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+</head>
+
+<body>
+
+    <main class="inventory-wrapper">
+        <!-- RESTOCK ALERTS -->
+        <section class="restock-section">
+            <h2>Restock Alerts</h2> 
+            <zing-grid id="restock-grid" 
+                caption="Products that need restocking" pager
+                page-size="5" sort> 
+                
+                <zg-data data='[ 
+                    { "name": "Watermelon", "stock": 0, "status": "Out of Stock" }, 
+                    { "name": "Avocados", "stock": 2, "status": "Low Stock" }, 
+                    { "name": "Mangoes", "stock": 3, "status": "Low Stock" }, 
+                    { "name": "Papaya", "stock": 3, "status": "Low Stock" }, 
+                    { "name": "Strawberries", "stock": 4, "status": "Low Stock" } 
+                ]'>
+                </zg-data>
+                <zg-colgroup> 
+                    <zg-column index="name" header="Product"></zg-column>
+                    <zg-column index="stock" header="Remaining"></zg-column> 
+                    <zg-column index="status" header="Status"></zg-column>
+                </zg-colgroup> 
+            </zing-grid>
+        </section>
+
+        <!-- MAIN INVENTORY -->
+        <section class="inventory-products">
+            <zing-grid id="inventory-grid" caption="Fruit Inventory" layout="card" pager page-size="12" editor="modal"
+                sort search>
+                <zg-data data='[
+                    {
+                        "image": "https://plus.unsplash.com/premium_photo-1671379516252-5cac4b59bd66?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Kiwis",
+                        "category": "Fruit",
+                        "price": 3.99,
+                        "stock": 24
+                    },
+                    {
+                        "image": "https://plus.unsplash.com/premium_photo-1705760348357-37f61222876e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Grapefruit",
+                        "category": "Citrus",
+                        "price": 2.49,
+                        "stock": 18
+                    },
+                    {
+                        "image": "https://images.unsplash.com/photo-1780951479372-3d060c6c0209?q=80&w=1675&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Strawberries",
+                        "category": "Berry",
+                        "price": 4.99,
+                        "stock": 4
+                    },
+                    {
+                        "image": "https://images.unsplash.com/photo-1585827552668-d0728b355e3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Oranges",
+                        "category": "Citrus",
+                        "price": 3.49,
+                        "stock": 12
+                    },
+                    {
+                        "image": "https://images.unsplash.com/photo-1725195398648-f3454b552b20?q=80&w=2006&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Green Grapes",
+                        "category": "Fruit",
+                        "price": 5.49,
+                        "stock": 8
+                    },
+                    {
+                        "image": "https://plus.unsplash.com/premium_photo-1675715403481-6ac4be346374?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Mangoes",
+                        "category": "Tropical",
+                        "price": 5.99,
+                        "stock": 3
+                    },
+                    {
+                        "image": "https://images.unsplash.com/photo-1594228746654-7b7dbfe92a97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Blueberries",
+                        "category": "Berry",
+                        "price": 4.49,
+                        "stock": 10
+                    },
+                    {
+                        "image": "https://images.unsplash.com/photo-1580636521086-7b0c742dd567?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Pomegranate", 
+                        "category": "Fruit",
+                        "price": 3.50,
+                        "stock": 13
+                    },
+                    {
+                        "image": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=1675&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Avocados",
+                        "category": "Produce",
+                        "price": 5.49,
+                        "stock": 2
+                    },
+                    {
+                        "image": "https://images.unsplash.com/photo-1581074817932-af423ba4566e?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Watermelon",
+                        "category": "Melon",
+                        "price": 6.99,
+                        "stock": 0
+                    },
+                     {
+                        "image": "https://images.unsplash.com/photo-1581375383680-7101dc5cb5f4?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "name": "Papaya",
+                        "category": "Fruit",
+                        "price": 6.25,
+                        "stock": 3
+                    }
+                ]'>
+                </zg-data>
+
+                <zg-colgroup>
+                    <zg-column index="image" type="image" header="Product"></zg-column>
+                    <zg-column index="name" header="Name"></zg-column>
+                    <zg-column index="price" header="Price"></zg-column>
+                    <zg-column index="stock" header="Stock"></zg-column>
+                </zg-colgroup>
+            </zing-grid>
+        </section>
+    </main>
+
+    <script src="/inventory/inventory.js" defer></script>
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Values</title>
+    <link rel="stylesheet" href="/calculate/column-options/column-options.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" crossorigin="anonymous">
+    <script nonce="undefined" src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="/calculate/column-options/column-options.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <zing-grid class="travel-grid" id="travel-grid" row-selector editor-controls gridlines="both"
+            layout-controls="disabled" layout="row" sort>
+
+            <zg-header></zg-header>
+
+            <zg-header index="calculation" header="Calculate" type="custom" class="calc-toolbar">
+                <div class="grid-calc-control">
+                    <select class="grid-calc-column">
+                        <option value="cost">Cost</option>
+                        <option value="duration">Duration</option>
+                        <option value="distance">Distance</option>
+                        <option value="numStops">Layovers</option>
+                        <option value="satisfaction">Rating</option>
+                        <option value="flightCost">Flight Cost</option>
+                        <option value="hotelCost">Hotel Cost </option>
+                        <option value="foodBudget">Food Budget</option>
+                        <option value="dailyBudget">Daily Budget</option>
+                    </select>
+
+                    <select class="grid-calc-operation">
+                        <option value="sum">Sum</option>
+                        <option value="difference">Difference</option>
+                        <option value="avg">Average</option>
+                        <option value="min">Min</option>
+                        <option value="max">Max</option>
+                    </select>
+
+                    <button class="grid-calc-button">
+                        Calculate
+                    </button>
+                </div>
+            </zg-header>      
+
+            <zg-data id="travel-data" 
+            data='[ 
+                { "trip": "Tokyo Getaway", "cost": 2450, "duration": 7, "distance": 6742, "numStops": 1, "satisfaction": 9.2, "flightCost": 1100, "hotelCost": 700, "foodBudget": 350, "dailyBudget": 350 },
+                { "trip": "Paris Weekend", "cost": 980, "duration": 3, "distance": 3625, "numStops": 0, "satisfaction": 8.7, "flightCost": 550, "hotelCost": 220, "foodBudget": 120, "dailyBudget": 327 },
+                { "trip": "Bali Retreat", "cost": 1750, "duration": 10, "distance": 9435, "numStops": 2, "satisfaction": 9.5, "flightCost": 850, "hotelCost": 400, "foodBudget": 250, "dailyBudget": 175 },
+                { "trip": "NYC Business Trip", "cost": 1200, "duration": 4, "distance": 2445, "numStops": 0, "satisfaction": 7.1, "flightCost": 400, "hotelCost": 500, "foodBudget": 180, "dailyBudget": 300 },
+                { "trip": "Iceland Road Trip", "cost": 3100, "duration": 8, "distance": 4180, "numStops": 1, "satisfaction": 9.8, "flightCost": 700, "hotelCost": 800, "foodBudget": 400, "dailyBudget": 388 },
+                { "trip": "Cancun Beach Escape", "cost": 1450, "duration": 5, "distance": 1650, "numStops": 0, "satisfaction": 8.3, "flightCost": 450, "hotelCost": 450, "foodBudget": 220, "dailyBudget": 290 },
+                { "trip": "Rome Historical Tour", "cost": 1600, "duration": 6, "distance": 4900, "numStops": 1, "satisfaction": 9.0, "flightCost": 700, "hotelCost": 420, "foodBudget": 240, "dailyBudget": 267 },
+                { "trip": "Cape Town Safari", "cost": 3800, "duration": 12, "distance": 10225, "numStops": 2, "satisfaction": 9.6, "flightCost": 1200, "hotelCost": 900, "foodBudget": 450, "dailyBudget": 317 },
+                { "trip": "Sydney Adventure", "cost": 2900, "duration": 9, "distance": 8200, "numStops": 1, "satisfaction": 8.9, "flightCost": 1150, "hotelCost": 650, "foodBudget": 350, "dailyBudget": 322 },
+                { "trip": "Machu Picchu Trek", "cost": 2100, "duration": 7, "distance": 3980, "numStops": 1, "satisfaction": 9.4, "flightCost": 650, "hotelCost": 350, "foodBudget": 220, "dailyBudget": 300 },
+                { "trip": "Amsterdam City Break", "cost": 850, "duration": 3, "distance": 3660, "numStops": 0, "satisfaction": 8.5, "flightCost": 450, "hotelCost": 180, "foodBudget": 100, "dailyBudget": 283 },
+                { "trip": "Dubai Luxury Stay", "cost": 4200, "duration": 6, "distance": 6890, "numStops": 0, "satisfaction": 9.1, "flightCost": 900, "hotelCost": 1500, "foodBudget": 500, "dailyBudget": 700 },
+                { "trip": "Costa Rica Ecotour", "cost": 1900, "duration": 8, "distance": 2340, "numStops": 1, "satisfaction": 9.3, "flightCost": 500, "hotelCost": 450, "foodBudget": 250, "dailyBudget": 238},
+                { "trip": "Vancouver Nature Trip", "cost": 1100, "duration": 5, "distance": 1900, "numStops": 0, "satisfaction": 8.6, "flightCost": 350, "hotelCost": 350, "foodBudget": 180, "dailyBudget": 220 },
+                { "trip": "Bangkok Street Food Tour", "cost": 900, "duration": 4, "distance": 8420, "numStops": 1, "satisfaction": 8.8, "flightCost": 500, "hotelCost": 160, "foodBudget": 120, "dailyBudget": 225}
+            ]'>
+            </zg-data>
+
+            <zg-colgroup>
+                <zg-column index="trip" header="Trip"></zg-column>
+                <zg-column index="cost" header="Cost of Trip in $" align="center" type="number" foot-cell="avg"></zg-column>
+                <zg-column index="flightCost" header="Flight Cost" align="center" type="number" foot-cell="avg" ></zg-column>
+                <zg-column index="hotelCost" header="Hotel Cost" align="center" type="number" foot-cell="avg"></zg-column>
+                <zg-column index="foodBudget" header="Food Budget" align="center" type="number"></zg-column>
+                <zg-column index="dailyBudget" header="Daily Spending Budget" align="center" type="number"></zg-column>
+
+                <zg-column index="duration" header="Duration (in days)" align="center" type="number"></zg-column>
+                <zg-column index="distance" header="Distance (in miles)" align="center" type="number"></zg-column>
+                <zg-column index="numStops" header="Number of Layovers" align="center" type="number"></zg-column>
+                <zg-column index="satisfaction" header="Overall Rating" align="center" type="number"></zg-column>
+            </zg-colgroup>
+
+        </zing-grid>
+
+        <template id="calcModalTemplate">
+            <div class="calc-modal-overlay">
+                <div class="calc-modal">
+                    <button class="calc-modal-close" id="closeCalcModal">×</button>
+
+                    <h2>Calculate Selected Values</h2>
+
+                    <div id="selectedValues"></div>
+
+                    <label for="modalCalcOp" id="modalCalcOp-label">Calculation Operation:</label>
+
+                    <select id="modalCalcOp">
+                        <option value="sum">Sum</option>
+                        <option value="difference">Difference</option>
+                        <option value="avg">Average</option>
+                        <option value="min">Min</option>
+                        <option value="max">Max</option>
+                    </select>
+
+                    <button id="modalCalculateBtn">
+                        Calculate
+                    </button>
+
+                    <div id="modalCalcResult"></div>
+                </div>
+            </div>
+        </template>
+
+    </main>
+</body>
+
+</html>
