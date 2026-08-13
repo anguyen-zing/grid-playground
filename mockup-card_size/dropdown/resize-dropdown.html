@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown</title>
+    <link rel="stylesheet" href="/mockup-card_size/dropdown/resize-dropdown.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="/mockup-card_size/dropdown/resize-dropdown.js" defer></script>
+</head>
+
+<body>
+    <zing-grid caption="Card Resizing Toolbar Demo - Dropdown" layout="card" layout-controls="enabled">
+
+        <div class="card-size-dropdown" data-tooltip="Card Sizing">
+
+            <div class="card-size-icon" id="cardSizeIcon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect x="2" y="2" width="12" height="12" stroke="#2196F3" stroke-width="2" />
+                    <rect x="7.42859" y="15" width="8.57143" height="5" fill="url(#pattern0_154_24)" />
+                    <rect width="8.57143" height="5" transform="matrix(-1 0 0 1 9.57141 15)"
+                        fill="url(#pattern1_154_24)" />
+                    <rect x="20" y="7.42871" width="8.57143" height="5" transform="rotate(90 20 7.42871)"
+                        fill="url(#pattern2_154_24)" />
+                    <rect width="8.57143" height="5" transform="matrix(0 -1 -1 0 20 9.57129)"
+                        fill="url(#pattern3_154_24)" />
+                    <defs>
+                        <pattern id="pattern0_154_24" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_154_24"
+                                transform="matrix(0.0111111 0 0 0.0185185 -8.54333e-08 -0.333334)" />
+                        </pattern>
+                        <pattern id="pattern1_154_24" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_154_24"
+                                transform="matrix(0.0111111 0 0 0.0185185 -8.54333e-08 -0.333334)" />
+                        </pattern>
+                        <pattern id="pattern2_154_24" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_154_24"
+                                transform="matrix(0.0111111 0 0 0.0185185 -8.54333e-08 -0.333334)" />
+                        </pattern>
+                        <pattern id="pattern3_154_24" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_154_24"
+                                transform="matrix(0.0111111 0 0 0.0185185 -8.54333e-08 -0.333334)" />
+                        </pattern>
+                        <image id="image0_154_24" width="90" height="90" preserveAspectRatio="none"
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC1ElEQVR4nO3cO4sTURQH8NHCV+OjUMSY3DOJjaCd+AFEEPQTiKWl6LbaiFY2ImruCWELwVJW0GJbC58o7AqWWmnpI497ErVYvTJZw0bZXZLJzN6bm/8PTj3n/Blu7s7c2SgCAAAAAAAAAAAAAAAAAAhMXGsfqtRbZdd9BItmZZ/S8pxYbFKK5UWRW7HrvoKjWB72Qx6oRqzbp133FhRi6awStCU2v4jlWnTVbnbdYxBo1ZD/CfxJzLLXdZ9TELRYxeaTqraPu+41+KBpOeyfSssl1/0GHzT1S5v7++t2h+u+ww+ae2EvFu80yXXv4QfNvfpaqnZOue5/GoK2pM1vYrmBLWDeQfd/KLWZL3Jr9zDXm1qUQdB/w/5IunvM9TzBB03LS8kPYnPe9UzhB80rW8DCTbvd9WzhB81JmYVSralybb50z24rscwoNm9Im25+w4jXpVg+x1U5kUvIZf39oGLzzvWQ5Etps0TaXI6s3ZTpnYyQZa16FNcbO7MJmmXGg4Gsr6W0vI/vypGxg+6tyR4MRH5XJ2Y5O2bQIh4MYiek6ocf2C2pgvageTtJlbwITvX2xnXjNIGVvIFH0LwxVa62Kgia86+RD+64bpgmsLB08AaUllfJSamRg8b2TjZme6e0vPZgAOt1JQ/ZtJxLFfDAHX3R+SDsbymWD6TlaDSuym27ldi8dT0Q+VhaHpduNXdFWSnUugcQtgwEbJaIzZVMH5P2JYs81eQCaXmptBjnw7KbUlq+UE1OZh7wJKLcgjYLOM00IKflAi9n/5dxwDhusJbs1mMcoFlXRiHPF2Zbe9a/0pSj8ZYKHHIcVvqQ5RuO7Y4g5Z28iG8RR5Rm64ZPK1IY+gcPHwuNZ8iQ8flb/kHjg858P1FOtm5armPrlhGlZW6VoBvE7TNZXQOiKEqWBcXybOWvPHmK/9uRo+QQCx5rAgAAAAAAAAAAAAAAAEDkkT//hHQLiNMlAwAAAABJRU5ErkJggg==" />
+                    </defs>
+                </svg>
+            </div>
+
+            <div id="cardSize">
+                <ul class="card-size-optgroup" id="cardSizeOptions">
+                    <li class="card-size-optgroup-label">Card Sizing</li>
+                    <li class="card-size-option" data-value="6">Small</li>
+                    <li class="card-size-option" data-value="5">Medium Small</li>
+                    <li class="card-size-option selected" data-value="4">Medium</li>
+                    <li class="card-size-option" data-value="3">Medium Large</li>
+                    <li class="card-size-option" data-value="2">Large</li>
+                    <li class="card-size-option" data-value="1">Extra Large</li>
+                </ul>
+            </div>
+
+        </div>
+        <zg-data data='[
+            {
+                "title": "The Elevator&#39;s Big Promotion",
+                "joke": "Why did the elevator get promoted?",
+                "punchline": "Because it was always raising the bar!"
+            },
+            {
+                "title": "When Math Gets Overwhelming",
+                "joke": "Why was the math book sad?",
+                "punchline": "Because it had too many problems."
+            },
+            {
+                "title": "A Fish With Class",
+                "joke": "What do you call a fish wearing a bowtie?",
+                "punchline": "Sofishticated."
+            },
+            {
+                "title": "Getting Bread-Y for Summer",
+                "joke": "Why did the bread go to the gym?",
+                "punchline": "Because it wanted to get a little bready for summer."
+            },
+            {
+                "title": "Skeletons Avoiding Conflict",
+                "joke": "Why don&#39;t skeletons fight each other?",
+                "punchline": "They don&#39;t have the guts."
+            },
+            {
+                "title": "The Coffee Crime",
+                "joke": "Why did the coffee file a police report?",
+                "punchline": "It got mugged."
+            },
+            {
+                "title": "A Banana in Trouble",
+                "joke": "Why did the banana go to the doctor?",
+                "punchline": "Because it wasn&#39;t peeling well."
+            },
+            {
+                "title": "The Computer Caught a Bug",
+                "joke": "Why did the computer go to the doctor?",
+                "punchline": "It had a virus."
+            },
+            {
+                "title": "The Cow With No Legs",
+                "joke": "What do you call a cow with no legs?",
+                "punchline": "Ground beef."
+            },
+            {
+                "title": "The Calendar&#39;s Countdown",
+                "joke": "Why did the calendar get nervous?",
+                "punchline": "Because its days were numbered."
+            }
+        ]'>
+        </zg-data>
+
+        <zg-colgroup>
+            <zg-column index="title"></zg-column>
+            <zg-column index="joke"></zg-column>
+            <zg-column index="punchline"></zg-column>
+        </zg-colgroup>
+
+    </zing-grid>
+</body>
+
+</html>

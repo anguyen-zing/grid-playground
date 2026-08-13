@@ -1,0 +1,237 @@
+.card-size-controls {
+    padding: 3px 3px 5px 3px;
+    background: rgb(227, 236, 246);
+}
+
+.card-size-controls,
+.card-size-controls label {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.card-size-dropdown {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    top: -29px;
+
+    z-index: 5;
+    padding: 0 5px;
+}
+
+.card-size-dropdown::after {
+    content: attr(data-tooltip);
+
+    position: absolute;
+
+    top: 0;
+    left: 5.5rem;
+
+    transform: translateX(-50%);
+
+    /* Tooltip styling */
+    background-color: rgb(117, 117, 117);
+
+    border: 1px solid rgb(117, 117, 117);
+    border-radius: 2px;
+
+    color: rgb(255, 255, 255);
+
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 11px;
+
+    padding: 6px 8px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 11;
+
+    transition: opacity 0.15s ease;
+}
+
+.card-size-dropdown:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card-size-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.card-size-icon:hover {
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: 4px;
+}
+
+.card-size-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+.card-size-menu {
+    position: absolute;
+
+    top: 32px;
+    left: 0;
+
+    width: 220px;
+    padding: 10px 12px;
+
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+    font-family: Roboto, Verdana, sans-serif;
+    display: none;
+    z-index: 20;
+}
+
+.card-size-menu.open {
+    display: block;
+}
+
+
+/* =========================================================
+   DROPDOWN TITLE
+========================================================= */
+
+.card-size-title {
+    margin-bottom: 10px;
+
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+
+    color: #424242;
+}
+
+.card-size-scale {
+    width: 100%;
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 11px;
+    color: #666666;
+}
+
+#cardSizeSlider {
+    appearance: none;
+
+    width: 100%;
+    height: 4px;
+    margin: 0;
+    padding: 0;
+
+    background: #d0d0d0;
+    border-radius: 999px;
+
+    outline: none;
+    cursor: pointer;
+}
+
+#cardSizeSlider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: #d0d0d0;
+    border-radius: 999px;
+}
+
+#cardSizeSlider::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    margin-top: -5px;
+    border: none;
+    border-radius: 50%;
+    background: #2196F3;
+    cursor: pointer;
+}
+
+
+#cardSizeSlider::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: #d0d0d0;
+    border-radius: 999px;
+}
+
+#cardSizeSlider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    border: none;
+    border-radius: 50%;
+    background: #2196F3;
+    cursor: pointer;
+}
+
+.scale-points {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin-top: -2px;
+}
+
+
+.scale-points span {
+    display: block;
+
+    width: 4px;
+    height: 4px;
+
+    background: #999999;
+    border-radius: 50%;
+}
+
+.current-size {
+    width: 100%;
+    margin-top: 8px;
+    text-align: center;
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #424242;
+}
+
+#cardSizeSlider:hover::-webkit-slider-thumb {
+    transform: scale(1.1);
+}
+
+#cardSizeSlider:hover::-moz-range-thumb {
+    transform: scale(1.1);
+}

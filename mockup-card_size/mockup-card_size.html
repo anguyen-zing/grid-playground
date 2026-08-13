@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup: Card Sizing Toolbar</title>
+    <link rel="stylesheet" href="/mockup-card_size/mockup-card_size.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"
+        crossorigin="anonymous">
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="/" defer></script>
+</head>
+
+<body>
+    <zing-grid caption="Card Resizing Toolbar Demo" layout="card" layout-controls="enabled">
+        
+        <div class="card-size-controls">
+            <label for="cardSize">Card Sizes:</label>
+
+            <span>Large</span>
+
+            <input type="range" id="cardSize" min="1" max="6" step="1" value="4">
+
+            <span>Small</span>
+        </div>
+
+
+        <zg-data data='[
+            {
+                "title": "The Elevator&#39;s Big Promotion",
+                "joke": "Why did the elevator get promoted?",
+                "punchline": "Because it was always raising the bar!"
+            },
+            {
+                "title": "When Math Gets Overwhelming",
+                "joke": "Why was the math book sad?",
+                "punchline": "Because it had too many problems."
+            },
+            {
+                "title": "A Fish With Class",
+                "joke": "What do you call a fish wearing a bowtie?",
+                "punchline": "Sofishticated."
+            },
+            {
+                "title": "Getting Bread-Y for Summer",
+                "joke": "Why did the bread go to the gym?",
+                "punchline": "Because it wanted to get a little bready for summer."
+            },
+            {
+                "title": "Skeletons Avoiding Conflict",
+                "joke": "Why don&#39;t skeletons fight each other?",
+                "punchline": "They don&#39;t have the guts."
+            },
+            {
+                "title": "The Coffee Crime",
+                "joke": "Why did the coffee file a police report?",
+                "punchline": "It got mugged."
+            },
+            {
+                "title": "A Banana in Trouble",
+                "joke": "Why did the banana go to the doctor?",
+                "punchline": "Because it wasn&#39;t peeling well."
+            },
+            {
+                "title": "The Computer Caught a Bug",
+                "joke": "Why did the computer go to the doctor?",
+                "punchline": "It had a virus."
+            },
+            {
+                "title": "The Cow With No Legs",
+                "joke": "What do you call a cow with no legs?",
+                "punchline": "Ground beef."
+            },
+            {
+                "title": "The Calendar&#39;s Countdown",
+                "joke": "Why did the calendar get nervous?",
+                "punchline": "Because its days were numbered."
+            }
+        ]'>
+        </zg-data>
+
+        <zg-colgroup>
+            <zg-column index="title"></zg-column>
+            <zg-column index="joke"></zg-column>
+            <zg-column index="punchline"></zg-column>
+        </zg-colgroup>
+
+    </zing-grid>
+</body>
+
+</html>

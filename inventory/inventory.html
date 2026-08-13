@@ -8,7 +8,11 @@
     <title>Inventory</title>
 
     <link href="/inventory/inventory.css" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        crossorigin="anonymous">
     <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
 </head>
 
@@ -17,31 +21,30 @@
     <main class="inventory-wrapper">
         <!-- RESTOCK ALERTS -->
         <section class="restock-section">
-            <h2>Restock Alerts</h2> 
-            <zing-grid id="restock-grid" 
-                caption="Products that need restocking" pager
-                page-size="5" sort> 
-                
+            <zing-grid id="restock-grid" caption="" sort>
+
                 <zg-data data='[ 
-                    { "name": "Watermelon", "stock": 0, "status": "Out of Stock" }, 
-                    { "name": "Avocados", "stock": 2, "status": "Low Stock" }, 
-                    { "name": "Mangoes", "stock": 3, "status": "Low Stock" }, 
-                    { "name": "Papaya", "stock": 3, "status": "Low Stock" }, 
-                    { "name": "Strawberries", "stock": 4, "status": "Low Stock" } 
+                   
                 ]'>
                 </zg-data>
-                <zg-colgroup> 
+                <zg-caption>
+                    <zg-button id="restock-button">
+                        Restock
+                    </zg-button>
+                </zg-caption>
+             
+                <zg-colgroup>
                     <zg-column index="name" header="Product"></zg-column>
-                    <zg-column index="stock" header="Remaining"></zg-column> 
-                    <zg-column index="status" header="Status"></zg-column>
-                </zg-colgroup> 
+                    <zg-column index="stock" header="Remaining"></zg-column>
+                    <zg-column index="status" header="Status" cell-class="statusColor"></zg-column>
+                </zg-colgroup>
             </zing-grid>
         </section>
 
         <!-- MAIN INVENTORY -->
         <section class="inventory-products">
             <zing-grid id="inventory-grid" caption="Fruit Inventory" layout="card" pager page-size="12" editor="modal"
-                sort search>
+                editor-controls sort search>
                 <zg-data data='[
                     {
                         "image": "https://plus.unsplash.com/premium_photo-1671379516252-5cac4b59bd66?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -124,7 +127,7 @@
                 </zg-data>
 
                 <zg-colgroup>
-                    <zg-column index="image" type="image" header="Product"></zg-column>
+                    <zg-column index="image" type="image" header="Product Image URL"></zg-column>
                     <zg-column index="name" header="Name"></zg-column>
                     <zg-column index="price" header="Price"></zg-column>
                     <zg-column index="stock" header="Stock"></zg-column>

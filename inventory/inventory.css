@@ -1,10 +1,28 @@
 .inventory-wrapper {
     width: 100%;
-    padding: 2rem;
+    margin: 5px;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-family: "Google Sans";
+}
+
+.restock-section{
+    width: 25%;
+    height: 100vh;
+
+    position: sticky;
+    top: 20px;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    align-self: flex-start;
 }
 
 .inventory-products {
-    width: 100%;
+    width: 72%;
 }
 
 zing-grid {
@@ -13,5 +31,152 @@ zing-grid {
 }
 
 zg-pager .zg-pager-inner::part(inner) {
+    display: none;
+}
+
+/* ====== Restock Grid ====== */
+
+.status-out {
+    color: #d93025 !important;
+}
+
+.status-low {
+    color: #f1972a !important;
+}
+
+#restock-button {
+    background: #41a603;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-family: "Google Sans";
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#restock-button:hover {
+    background: #1ac078;
+}
+
+/* ===== Restock Modal ===== */
+
+.restock-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: "Google Sans";
+}
+
+.restock-modal-overlay.open {
+    display: flex;
+}
+
+.restock-modal {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px 20px;
+    width: 340px;
+    max-width: 90vw;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.restock-modal h2 {
+    margin: 0 0 4px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.restock-modal .restock-modal-subtitle {
+    margin: 0 0 20px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.restock-modal label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.restock-modal select,
+.restock-modal input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-family: "Google Sans";
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    color: #1a1a1a;
+    background: #fafafa;
+}
+
+.restock-modal select:focus,
+.restock-modal input[type="number"]:focus {
+    outline: none;
+    border-color: #038fdb;
+    background: #fff;
+}
+
+.restock-modal-error {
+    color: #d93025;
+    font-size: 0.78rem;
+    margin: -10px 0 14px;
+    display: none;
+}
+
+.restock-modal-error.visible {
+    display: block;
+}
+
+.restock-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.restock-modal-cancel {
+    background: none;
+    border: 1px solid #dcdcdc;
+    color: #444;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: "Google Sans";
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.restock-modal-cancel:hover {
+    background: #f2f2f2;
+}
+
+.restock-modal-submit {
+    background: #038fdb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: "Google Sans";
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.restock-modal-submit:hover {
+    background: #0277b5;
+}
+
+/* ===== Inventory Grid ===== */
+
+#inventory-grid zg-row[layout="card"] zg-cell:first-of-type label span {
     display: none;
 }

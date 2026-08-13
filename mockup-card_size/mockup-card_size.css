@@ -1,0 +1,32 @@
+
+.card-size-controls{
+    padding: 3px 3px 5px 3px; 
+    background: rgb(227, 236, 246);
+}
+
+.card-size-controls input[type="range"] {
+    appearance: none;
+    width: 180px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgb(208, 207, 207);
+    outline: none;
+}
+
+.card-size-controls input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgb(33, 150, 243);
+    cursor: pointer;
+}
+
+.card-size-controls input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-radius: 50%;
+    background: rgb(33, 150, 243);
+    cursor: pointer;
+}
