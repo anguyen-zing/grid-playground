@@ -12,10 +12,12 @@
 
 .card-size-dropdown {
     position: relative;
-
     width: 28px;
     height: 28px;
     top: -29px;
+
+    margin-right: 3.3rem;
+    margin-left: auto;
 
     z-index: 5;
     padding: 0 5px;
@@ -23,10 +25,12 @@
 
 .card-size-dropdown::after {
     content: attr(data-tooltip);
+
     position: absolute;
 
     top: 0;
-    left: 75px;
+    left: -2.5rem;
+
     transform: translateX(-50%);
 
     /* Tooltip styling */
@@ -34,6 +38,7 @@
 
     border: 1px solid rgb(117, 117, 117);
     border-radius: 2px;
+
     color: rgb(255, 255, 255);
 
     font-family: Roboto, Verdana, sans-serif;
@@ -42,13 +47,16 @@
     line-height: 11px;
 
     padding: 6px 8px;
+
     white-space: nowrap;
 
     opacity: 0;
     visibility: hidden;
+
     pointer-events: none;
 
     z-index: 11;
+
     transition: opacity 0.15s ease;
 }
 
@@ -67,8 +75,11 @@
     height: 28px;
 
     padding: 0;
+
     border: none;
+
     background: transparent;
+
     cursor: pointer;
 }
 
@@ -87,7 +98,7 @@
     position: absolute;
 
     top: 32px;
-    left: 0;
+    left: -10rem;
 
     width: 220px;
     padding: 10px 12px;
@@ -129,11 +140,24 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 
     font-family: Roboto, Verdana, sans-serif;
     font-size: 11px;
     color: #666666;
+}
+
+.scale-labels span {
+    flex: 1;
+    text-align: center;
+}
+
+.scale-labels span:first-child {
+    text-align: left;
+}
+
+.scale-labels span:last-child {
+    text-align: right;
 }
 
 #cardSizeSlider {
@@ -191,14 +215,12 @@
 
 .scale-points {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
 
     width: 100%;
     margin-top: -2px;
 }
-
 
 .scale-points span {
     display: block;
@@ -226,4 +248,161 @@
 
 #cardSizeSlider:hover::-moz-range-thumb {
     transform: scale(1.1);
+}
+
+
+
+/* =========================================================
+   XS — MOST CARDS
+========================================================= */
+
+zing-grid[card-size="xs"] {
+    --zg-card-columns: 50%;
+}
+
+@media (min-width: 550px) {
+    zing-grid[card-size="xs"] {
+        --zg-card-columns: 25%;
+    }
+}
+
+@media (min-width: 1023px) {
+    zing-grid[card-size="xs"] {
+        --zg-card-columns: 20%;
+    }
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-size="xs"] {
+        --zg-card-columns: 16.6667%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-size="xs"] {
+        --zg-card-columns: 16.6667%;
+    }
+}
+
+
+/* =========================================================
+   S
+========================================================= */
+
+zing-grid[card-size="s"] {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 550px) {
+    zing-grid[card-size="s"] {
+        --zg-card-columns: 33.3333%;
+    }
+}
+
+@media (min-width: 1023px) {
+    zing-grid[card-size="s"] {
+        --zg-card-columns: 25%;
+    }
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-size="s"] {
+        --zg-card-columns: 20%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-size="s"] {
+        --zg-card-columns: 16.6667%;
+    }
+}
+
+
+/* =========================================================
+   M — DEFAULT
+========================================================= */
+
+zing-grid[card-size="m"],
+zing-grid:not([card-size]) {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 550px) {
+
+    zing-grid[card-size="m"],
+    zing-grid:not([card-size]) {
+        --zg-card-columns: 50%;
+    }
+}
+
+@media (min-width: 1023px) {
+
+    zing-grid[card-size="m"],
+    zing-grid:not([card-size]) {
+        --zg-card-columns: 33.3333%;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    zing-grid[card-size="m"],
+    zing-grid:not([card-size]) {
+        --zg-card-columns: 25%;
+    }
+}
+
+@media (min-width: 1600px) {
+
+    zing-grid[card-size="m"],
+    zing-grid:not([card-size]) {
+        --zg-card-columns: 20%;
+    }
+}
+
+
+/* =========================================================
+   L
+========================================================= */
+
+zing-grid[card-size="l"] {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 1023px) {
+    zing-grid[card-size="l"] {
+        --zg-card-columns: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-size="l"] {
+        --zg-card-columns: 33.3333%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-size="l"] {
+        --zg-card-columns: 25%;
+    }
+}
+
+
+/* =========================================================
+   XL — FEWEST CARDS
+========================================================= */
+
+zing-grid[card-size="xl"] {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-size="xl"] {
+        --zg-card-columns: 50%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-size="xl"] {
+        --zg-card-columns: 33.3333%;
+    }
 }
