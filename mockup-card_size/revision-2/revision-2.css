@@ -1,0 +1,576 @@
+.card-size-controls {
+    padding: 3px 3px 5px 3px;
+    background: rgb(227, 236, 246);
+}
+
+.card-size-controls,
+.card-size-controls label {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+/* =====================================
+   CARD SIZE BUTTON
+=======================================*/
+
+.card-size-dropdown {
+    position: relative;
+
+    width: 28px;
+    height: 28px;
+
+    top: -29px;
+
+    margin-right: 3.3rem;
+    margin-left: auto;
+
+    z-index: 5;
+
+    padding: 0 5px;
+}
+
+.card-size-dropdown::after {
+    content: attr(data-tooltip);
+
+    position: absolute;
+
+    top: 0;
+    left: -2.5rem;
+
+    transform: translateX(-50%);
+
+    background-color: rgb(117, 117, 117);
+
+    border: 1px solid rgb(117, 117, 117);
+    border-radius: 2px;
+
+    color: rgb(255, 255, 255);
+
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 11px;
+
+    padding: 6px 8px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 11;
+
+    transition: opacity 0.15s ease;
+}
+
+.card-size-dropdown:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card-size-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.card-size-icon:hover {
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: 4px;
+}
+
+.card-size-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ====================================
+   DROPDOWN
+======================================= */
+
+.card-size-menu {
+    position: absolute;
+
+    top: 32px;
+    left: -10rem;
+
+    width: 220px;
+    padding: 10px 12px;
+
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.15);
+
+    font-family: Roboto, Verdana, sans-serif;
+
+    display: none;
+    z-index: 20;
+}
+
+.card-size-menu.open {
+    display: block;
+}
+
+/* ====================================
+   TITLE
+======================================= */
+.card-size-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    font-family: Roboto, Verdana, sans-serif;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    color: #424242;
+}
+
+/* ====================================
+   MODE OPTIONS
+======================================= */
+
+.card-size-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.mode-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 3px;
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 11px;
+    color: #424242;
+}
+
+.toggle-label {
+    font-size: 11px;
+    font-weight: 500;
+    min-width: 70px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-flex;
+    width: 40px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 22px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: #2196F3;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(18px);
+}
+
+/* =====================================
+   CARD SCALE
+=======================================*/
+
+.card-size-scale {
+    width: 100%;
+
+    transition:
+        opacity 0.15s ease;
+}
+
+.card-size-scale.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.scale-labels {
+    display: flex;
+
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 7px;
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 11px;
+    color: #666666;
+}
+
+.scale-labels span {
+    flex: 1;
+    text-align: center;
+}
+
+.scale-labels span:first-child {
+    text-align: left;
+}
+
+.scale-labels span:last-child {
+    text-align: right;
+}
+
+/* =======================================
+   SLIDER
+========================================== */
+
+#cardSizeSlider {
+    appearance: none;
+
+    width: 100%;
+    height: 4px;
+
+    margin: 0;
+    padding: 0;
+
+    background: #d0d0d0;
+    border-radius: 999px;
+
+    outline: none;
+    cursor: pointer;
+}
+
+#cardSizeSlider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+
+    background: #d0d0d0;
+    border-radius: 999px;
+}
+
+#cardSizeSlider::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    margin-top: -5px;
+    border: none;
+    border-radius: 50%;
+    background: #2196F3;
+    cursor: pointer;
+}
+
+#cardSizeSlider::-moz-range-track {
+    width: 100%;
+    height: 4px;
+
+    background: #d0d0d0;
+    border-radius: 999px;
+}
+
+#cardSizeSlider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    border: none;
+    border-radius: 50%;
+    background: #2196F3;
+    cursor: pointer;
+}
+
+#cardSizeSlider:hover::-webkit-slider-thumb {
+    transform: scale(1.1);
+}
+
+#cardSizeSlider:hover::-moz-range-thumb {
+    transform: scale(1.1);
+}
+
+
+/* =======================================
+   SCALE POINTS
+========================================== */
+
+.scale-points {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin-top: -2px;
+}
+
+
+.scale-points span {
+    display: block;
+
+    width: 4px;
+    height: 4px;
+
+    background: #999999;
+    border-radius: 50%;
+}
+
+/* ====================================
+   CURRENT SIZE
+======================================= */
+
+.current-size {
+    width: 100%;
+
+    margin-top: 8px;
+    text-align: center;
+
+    font-family: Roboto, Verdana, sans-serif;
+
+    font-size: 11px;
+    font-weight: 400;
+
+    color: #424242;
+}
+
+/* =====================================
+   RESPONSIVE STATUS
+========================================*/
+
+.responsive-status {
+    display: none;
+
+    width: 100%;
+    margin-top: 8px;
+    text-align: center;
+    font-family: Roboto, Verdana, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+
+    color: #424242;
+}
+
+.responsive-status.visible {
+    display: block;
+}
+
+/* =======================================
+   RESPONSIVE MODE
+========================================== */
+
+/*
+ * JavaScript dynamically sets --zg-card-columns
+ * based on the available grid width.
+ *
+ * 1 card = 100%
+ * 2 cards = 50%
+ * 3 cards = 33.3333%
+ * 4 cards = 25%
+ * 5 cards = 20%
+ * 6 cards = 16.6667%
+ */
+
+zing-grid[card-mode="responsive"] {
+    --zg-card-columns: 100%;
+}
+
+
+/* =======================================
+   XS — MOST CARDS
+   More cards are added as the grid gets wider.
+======================================= */
+
+zing-grid[card-mode="scale"][card-size="xs"] {
+    --zg-card-columns: 50%;
+}
+
+/* 550px+ → 4 cards */
+@media (min-width: 550px) {
+    zing-grid[card-mode="scale"][card-size="xs"] {
+        --zg-card-columns: 25%;
+    }
+}
+
+/* 1023px+ → 5 cards */
+@media (min-width: 1023px) {
+    zing-grid[card-mode="scale"][card-size="xs"] {
+        --zg-card-columns: 20%;
+    }
+}
+
+/* 1200px+ → 6 cards */
+@media (min-width: 1200px) {
+    zing-grid[card-mode="scale"][card-size="xs"] {
+        --zg-card-columns: 16.6667%;
+    }
+}
+
+/* 1400px+ → 7 cards */
+@media (min-width: 1400px) {
+    zing-grid[card-mode="scale"][card-size="xs"] {
+        --zg-card-columns: 14.2857%;
+    }
+}
+
+/* 1600px+ → 8 cards */
+@media (min-width: 1600px) {
+    zing-grid[card-mode="scale"][card-size="xs"] {
+        --zg-card-columns: 12.5%;
+    }
+}
+
+/* 1800px+ → 9 cards */
+@media (min-width: 1800px) {
+    zing-grid[card-mode="scale"][card-size="xs"] {
+        --zg-card-columns: 11.1111%;
+    }
+}
+
+/* 2000px+ → 10 cards */
+@media (min-width: 2000px) {
+    zing-grid[card-mode="scale"][card-size="xs"] {
+        --zg-card-columns: 10%;
+    }
+}
+
+/* ====================================
+   S
+======================================= */
+
+zing-grid[card-mode="scale"][card-size="s"] {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 550px) {
+    zing-grid[card-mode="scale"][card-size="s"] {
+        --zg-card-columns: 33.3333%;
+    }
+}
+
+@media (min-width: 1023px) {
+    zing-grid[card-mode="scale"][card-size="s"] {
+        --zg-card-columns: 25%;
+    }
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-mode="scale"][card-size="s"] {
+        --zg-card-columns: 20%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-mode="scale"][card-size="s"] {
+        --zg-card-columns: 16.6667%;
+    }
+}
+
+
+/* ====================================
+   M — DEFAULT
+======================================= */
+
+zing-grid[card-mode="scale"][card-size="m"] {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 550px) {
+    zing-grid[card-mode="scale"][card-size="m"] {
+        --zg-card-columns: 50%;
+    }
+}
+
+@media (min-width: 1023px) {
+    zing-grid[card-mode="scale"][card-size="m"] {
+        --zg-card-columns: 33.3333%;
+    }
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-mode="scale"][card-size="m"] {
+        --zg-card-columns: 25%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-mode="scale"][card-size="m"] {
+        --zg-card-columns: 20%;
+    }
+}
+
+
+/* =====================================
+   L
+=======================================*/
+
+zing-grid[card-mode="scale"][card-size="l"] {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 1023px) {
+    zing-grid[card-mode="scale"][card-size="l"] {
+        --zg-card-columns: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-mode="scale"][card-size="l"] {
+        --zg-card-columns: 33.3333%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-mode="scale"][card-size="l"] {
+        --zg-card-columns: 25%;
+    }
+}
+
+
+/* ====================================
+   XL — FEWEST CARDS 
+======================================= */
+
+zing-grid[card-mode="scale"][card-size="xl"] {
+    --zg-card-columns: 100%;
+}
+
+@media (min-width: 1200px) {
+    zing-grid[card-mode="scale"][card-size="xl"] {
+        --zg-card-columns: 50%;
+    }
+}
+
+@media (min-width: 1600px) {
+    zing-grid[card-mode="scale"][card-size="xl"] {
+        --zg-card-columns: 33.3333%;
+    }
+}
