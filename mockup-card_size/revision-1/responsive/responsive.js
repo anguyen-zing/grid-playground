@@ -139,29 +139,48 @@ function setupCardSizeMenu() {
 
 
 /**
- * Sets up the Responsive / Scale mode radio buttons.
+ * Sets up the Responsive / Scale mode toggle.
  */
 function setupModeSwitching() {
-    var modeInputs = document.querySelectorAll('input[name="cardSizeMode"]');
+    var toggle = document.getElementById('cardSizeModeToggle');
 
-    modeInputs.forEach(function (input) {
-        input.addEventListener("change", function () {
-            handleModeChange(input);
-        });
+    if (!toggle) {
+        return;
+    }
+
+    toggle.addEventListener("change", function () {
+        handleModeChange(toggle);
+        updateToggleLabel(toggle);
     });
+}
+
+/**
+ * Updates the toggle label text based on toggle state.
+ *
+ * @param {HTMLInputElement} toggle - Toggle checkbox
+ */
+function updateToggleLabel(toggle) {
+    var label = document.getElementById('toggleLabel');
+
+    if (!label) {
+        return;
+    }
+
+    label.textContent = toggle.checked ? 'Responsive' : 'Manual';
 }
 
 
 /**
  * Handles switching between Responsive and Scale modes.
  *
- * @param {HTMLInputElement} input - Selected radio button
+ * @param {HTMLInputElement} input - Toggle checkbox
  */
 function handleModeChange(input) {
     var cardSizeScale = document.getElementById("cardSizeScale");
     var responsiveStatus = document.getElementById("responsiveStatus");
 
-    if (input.value === "responsive" && input.checked) {
+    // Checked = Responsive, Unchecked = Manual
+    if (input.checked) {
         setResponsiveMode();
 
         if(cardSizeScale){
@@ -175,31 +194,30 @@ function handleModeChange(input) {
         return;
     }
 
-    if (input.value === "scale" && input.checked) {
-        var slider = document.getElementById("cardSizeSlider");
+    // Manual mode
+    var slider = document.getElementById("cardSizeSlider");
 
-        var cardSizes = [
-            "xs",
-            "s",
-            "m",
-            "l",
-            "xl"
-        ];
+    var cardSizes = [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl"
+    ];
 
-        var value = Number(slider.value);
-        var size = cardSizes[value - 1];
+    var value = Number(slider.value);
+    var size = cardSizes[value - 1];
 
-        if(size){ 
-            setCardSize(size); 
-        }
+    if(size){ 
+        setCardSize(size); 
+    }
 
-        if(cardSizeScale){
-            cardSizeScale.classList.remove("disabled");
-        }
+    if(cardSizeScale){
+        cardSizeScale.classList.remove("disabled");
+    }
 
-        if (responsiveStatus){
-            responsiveStatus.classList.remove("visible");
-        }
+    if (responsiveStatus){
+        responsiveStatus.classList.remove("visible");
     }
 }
 
@@ -248,11 +266,11 @@ function updateCardSizeFromSlider(slider) {
         return;
     }
 
-    /* Switch to Scale mode */
-    var scaleRadio = document.querySelector( 'input[name="cardSizeMode"][value="scale"]');
+    /* Switch to Manual mode */
+    var toggle = document.getElementById('cardSizeModeToggle');
 
-    if (scaleRadio && !scaleRadio.checked) {
-        scaleRadio.checked = true;
+    if (toggle && toggle.checked) {
+        toggle.checked = false;
     }
 
     if(cardSizeScale){
