@@ -23,7 +23,7 @@
         card-mode="responsive">
 
         <!-- Card Size / Responsive Control -->
-        <div class="card-size-dropdown" data-tooltip="Card Scale">
+        <section class="card-size-dropdown" data-tooltip="Card Scale">
 
             <button class="card-size-icon" id="cardSizeButton" type="button" aria-label="Card display options"
                 aria-expanded="false">
@@ -48,11 +48,11 @@
                 </svg>
             </button>
 
-            <div class="card-size-menu" id="cardSizeMenu">
-                <h1 class="card-size-title"> Card Scale </h1>
+            <nav class="card-size-menu" id="cardSizeMenu">
+                <h2 class="card-size-title"> Card Scale </h2>
 
-                <!-- Mode selection -->
-                <div class="card-size-mode">
+                <!-- Mode Selection -->
+                <fieldset class="card-size-mode">
                     <div class="mode-toggle-container">
                         <label class="toggle-switch">
                             <input type="checkbox" id="cardSizeModeToggle" checked>
@@ -60,38 +60,76 @@
                         </label>
                         <span class="toggle-label" id="toggleLabel">Responsive</span>
                     </div>
-                </div>
 
-                <!-- XS - XL scale -->
-                <div class="card-size-scale" id="cardSizeScale">
+                    <!-- Responsive Mode: MIN/MAX-->
+                    <fieldset class="card-size-scale" id="minMaxScale">
+                        <legend class="sr-only">Card Range</legend>
+                        <div class="range-input">
 
-                    <p class="current-size" id="currentSize"> M </p>
+                            <label class="row-field">
+                                <span>Min:</span>
+                                <input type="number" class="min-input" value="1">
+                            </label>
 
-                    <input type="range" id="cardSizeSlider" min="1" max="5" step="1" value="3">
+                            <label class="row-field">
+                                <span>Max:</span>
+                                <input type="number" class="max-input" value="4">
+                            </label>
 
-                    <div class="scale-points">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+                            <div class="range-slider">
+                                <span class="inner-range-slider"></span>
 
-                    <div class="scale-labels">
-                        <span>XS</span>
-                        <span>S</span>
-                        <span>M</span>
-                        <span>L</span>
-                        <span>XL</span>
-                    </div>
 
-                </div>
+                                <div class="range-slider-input">
+                                    <input type="range" class="min-range" min="1" max="6" value="1" step="1">
+                                    <input type="range" class="max-range" min="1" max="6" value="4" step="1">
+                                </div>
+                            </div>
 
-                <!-- Responsive status -->
-                <p class="responsive-status" id="responsiveStatus"> Responsive </p>
+                        </div>
 
-            </div>
-        </div>
+                    </fieldset>
+
+                    <!-- Responsive Mode: XS - XL -->
+                    <fieldset class="card-size-scale" id="cardResponsiveScale">
+                        <legend class="sr-only">Card Size Scale</legend>
+
+                        <p class="current-size"> 
+                            Current Size: <span id="currentResponsiveSize">M</span>
+                        </p>
+
+                        <input type="range" id="cardResponsiveSlider" class="general-slider" min="1" max="5" step="1" value="3">
+
+                        <div class="scale-labels">
+                            <span>XS</span>
+                            <span>S</span>
+                            <span>M</span>
+                            <span>L</span>
+                            <span>XL</span>
+                        </div>
+                    </fieldset>
+
+                    <!-- Fixed Scale: 1 - 6 -->
+                    <fieldset class="card-size-scale disabled" id="cardFixedScale">
+                        <legend class="sr-only">Fixed Scale</legend>
+
+                        <p class="current-size"> 
+                            Cards per Row: <span id="currentFixedSize">4</span>
+                        </p>
+
+                        <input type="range" id="cardFixedSlider" class="general-slider" min="1" max="6" step="1" value="4">
+
+                        <div class="scale-labels">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                        </div>
+                    </fieldset> 
+            </nav>
+        </section>
 
 
         <!-- Data -->

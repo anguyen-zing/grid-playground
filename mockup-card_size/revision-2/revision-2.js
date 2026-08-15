@@ -8,99 +8,9 @@ function initFlashcards() {
         console.warn("zing-grid element not found");
         return;
     }
-
     setResponsiveMode();
+    console.log("Default/Initial Mode is", getCurrentMode());
 }
-
-/**
- * Sets the grid to Responsive mode.
- */
-function setResponsiveMode() {
-    var grid = document.querySelector("zing-grid");
-
-    if (!grid) {
-        return;
-    }
-
-    grid.setAttribute("card-mode", "responsive");
-    grid.removeAttribute("card-size");
-
-    updateResponsiveColumns();
-}
-
-
-/**
- * Sets the grid to manual Card Scale mode.
- *
- * @param {string} size - xs, s, m, l, or xl
- */
-function setCardSize(size) {
-    var grid = document.querySelector("zing-grid");
-
-    if (!grid) {
-        return;
-    }
-
-    grid.setAttribute("card-mode", "scale");
-    grid.setAttribute("card-size", size);
-
-    grid.style.removeProperty("--zg-card-columns");
-}
-
-
-/**
- * Calculates the number of cards shown per row
- * in Responsive mode.
- */
-function updateResponsiveColumns() {
-    var grid = document.querySelector("zing-grid");
-
-    if (!grid || grid.getAttribute("card-mode") !== "responsive") {
-        return;
-    }
-
-    var gridWidth = grid.clientWidth;
-
-    if (!gridWidth) {
-        return;
-    }
-
-    var minimumCardWidth = 280;
-    var columns = Math.floor(gridWidth / minimumCardWidth);
-
-    columns = Math.max(columns, 1);
-    columns = Math.min(columns, 6);
-
-    var columnWidth = 100 / columns;
-
-    grid.style.setProperty("--zg-card-columns", columnWidth + "%");
-
-    updateResponsiveStatus(columns);
-}
-
-
-/**
- * Updates the responsive status text.
- *
- * @param {number} columns - Number of cards per row
- */
-function updateResponsiveStatus(columns) {
-    var responsiveStatus = document.getElementById("responsiveStatus");
-
-    if (!responsiveStatus) {
-        return;
-    }
-
-    if (columns === 1) {
-        responsiveStatus.textContent =
-            "Responsive: " + columns + " card per row";
-    } 
-    else {
-        responsiveStatus.textContent =
-            "Responsive: " + columns + " cards per row";
-    }
-}
-
 
 /**
  * Opens and closes the card size menu
@@ -139,6 +49,72 @@ function setupCardSizeMenu() {
 
 
 /**
+ * Sets the grid to Responsive mode.
+ */
+function setResponsiveMode() {
+    var grid = document.querySelector("zing-grid");
+
+    if (!grid) {
+        return;
+    }
+
+    grid.setAttribute("card-mode", "responsive");
+    grid.removeAttribute("card-size");
+    grid.style.removeProperty("--zg-card-columns");
+
+    var slider = document.getElementById("cardResponsiveSlider");
+
+    if (slider) {
+        slider.dispatchEvent(new Event("input"));
+    }
+}
+
+/**
+ * Sets the grid to Fixed mode.
+ */
+function setFixedMode() {
+    var grid = document.querySelector("zing-grid");
+
+    if (!grid) {
+        return;
+    }
+
+    grid.setAttribute("card-mode", "fixed");
+    grid.removeAttribute("card-size");
+
+    var slider = document.getElementById("cardFixedSlider");
+    if (slider) {
+        slider.dispatchEvent(new Event("input"));
+    }
+}
+
+/**
+ * Gets current the 'card-mode' attribute value
+ * @returns mode value: responsive or fixed 
+ */
+function getCurrentMode() {
+    var grid = document.querySelector("zing-grid");
+    const currentMode = grid.getAttribute('card-mode');
+
+    return currentMode;
+}
+
+/**
+ * Updates the toggle label text based on toggle state.
+ *
+ * @param {HTMLInputElement} toggle - Toggle checkbox
+ */
+function updateToggleLabel(toggle) {
+    var label = document.getElementById('toggleLabel');
+
+    if (!label) {
+        return;
+    }
+
+    label.textContent = toggle.checked ? 'Responsive' : 'Fixed';
+}
+
+/**
  * Sets up the Responsive / Scale mode toggle.
  */
 function setupModeSwitching() {
@@ -155,47 +131,72 @@ function setupModeSwitching() {
 }
 
 /**
- * Updates the toggle label text based on toggle state.
- *
- * @param {HTMLInputElement} toggle - Toggle checkbox
- */
-function updateToggleLabel(toggle) {
-    var label = document.getElementById('toggleLabel');
-
-    if (!label) {
-        return;
-    }
-
-    label.textContent = toggle.checked ? 'Responsive' : 'Manual';
-}
-
-
-/**
- * Handles switching between Responsive and Scale modes.
+ * Handles switching between Responsive and Fixed modes.
  *
  * @param {HTMLInputElement} input - Toggle checkbox
  */
 function handleModeChange(input) {
-    var cardSizeScale = document.getElementById("cardSizeScale");
-    var responsiveStatus = document.getElementById("responsiveStatus");
+    const minMaxScale = document.getElementById("minMaxScale");
+    const responsiveScale = document.getElementById("cardResponsiveScale");
+    const fixedScale = document.getElementById("cardFixedScale");
 
-    // Checked = Responsive, Unchecked = Manual
+    // Checked = Responsive, Unchecked = Fixed
     if (input.checked) {
         setResponsiveMode();
 
-        if(cardSizeScale){
-            cardSizeScale.classList.add("disabled");
-        }
+        minMaxScale.classList.remove("disabled");
+        responsiveScale.classList.remove("disabled");
 
-        if(responsiveStatus){
-            responsiveStatus.classList.add("visible");
-        }
+        fixedScale.classList.add("disabled");
+    }
+    else {
+        setFixedMode();
 
+        minMaxScale.classList.add("disabled");
+        responsiveScale.classList.add("disabled");
+
+        fixedScale.classList.remove("disabled");
+    }
+
+    console.log("Mode changed to:", getCurrentMode());
+}
+
+/**
+ * Allows users to choose a fixed set of cards per row and
+ * card width adjusts to fill the available grid space
+ * @returns 
+ */
+function activateFixedMode() {
+    var slider = document.getElementById("cardFixedSlider");
+    var body = document.querySelector("zg-body");
+
+    if (!slider || !body) {
         return;
     }
 
-    // Manual mode
-    var slider = document.getElementById("cardSizeSlider");
+    slider.addEventListener("input", function () {
+        var columns = Number(slider.value);
+
+        body.style.display = "grid";
+        body.style.gap = "15px";
+        body.style.gridTemplateColumns = "repeat(" + columns + ", 1fr)";
+    });
+
+    slider.dispatchEvent(new Event("input"));
+}
+
+/**
+ * Controls the size of the cards (XS–XL), and the # of cards per row changes 
+ * automatically based on the available screen width with CSS media queries
+ * @returns 
+ */
+function activateResponsiveMode() {
+    var slider = document.getElementById("cardResponsiveSlider");
+    var grid = document.querySelector("zing-grid");
+
+    if (!slider || !grid) {
+        return;
+    }
 
     var cardSizes = [
         "xs",
@@ -205,153 +206,172 @@ function handleModeChange(input) {
         "xl"
     ];
 
-    var value = Number(slider.value);
-    var size = cardSizes[value - 1];
+    slider.addEventListener("input", function () {
+        var value = Number(slider.value);
+        var size = cardSizes[value - 1];
 
-    if(size){ 
-        setCardSize(size); 
-    }
+        if (!size) {
+            return;
+        }
 
-    if(cardSizeScale){
-        cardSizeScale.classList.remove("disabled");
-    }
+        grid.setAttribute("card-mode", "scale");
+        grid.setAttribute("card-size", size);
 
-    if (responsiveStatus){
-        responsiveStatus.classList.remove("visible");
-    }
+        applyMinMaxRange();
+    });
+
+    slider.dispatchEvent(new Event("input"));
 }
 
+function applyMinMaxRange() {
+    var minInput = document.querySelector(".min-range");
+    var maxInput = document.querySelector(".max-range");
+    var grid = document.querySelector("zing-grid");
+
+    if (!minInput || !maxInput || !grid) {
+        return;
+    }
+
+    var min = Number(minInput.value);
+    var max = Number(maxInput.value);
+
+    grid.style.removeProperty("--zg-card-columns");
+
+    var columnWidth = parseFloat(
+        getComputedStyle(grid).getPropertyValue("--zg-card-columns")
+    );
+
+    if (!columnWidth) {
+        return;
+    }
+
+    var columns = Math.round(100 / columnWidth);
+
+    columns = Math.max(min, Math.min(columns, max));
+
+    grid.style.setProperty(
+        "--zg-card-columns",
+        (100 / columns) + "%"
+    );
+}
 
 /**
- * Sets up the card size slider.
+ * Updates slider fill as user drags it
+ * @param {*} slider 
  */
-function setupCardSizeSlider() {
-    var slider = document.getElementById("cardSizeSlider");
+function updateSliderFill(slider) {
+    var min = Number(slider.min);
+    var max = Number(slider.max);
+    var value = Number(slider.value);
+
+    var percentage = ((value - min) / (max - min)) * 100;
+
+    slider.style.background = `linear-gradient(to right, var(--range-slider-fill) 0%, var(--range-slider-fill) ${percentage}%, var(--slider-track-color) ${percentage}%, var(--slider-track-color) 100%)`;
+}
+
+/**
+ * Updates the current value label to reflect the exact value from slider
+ * @param {*} slider 
+ * @param {*} label 
+ * @param {*} values 
+ * @returns 
+ */
+function updateSliderLabel(slider, label, values) {
+    var value = Number(slider.value);
+
+    if (!label) {
+        return;
+    }
+
+    label.textContent = values[value - 1];
+}
+
+/**
+ * Setting up the general scale slider (responsive and fixed)
+ * @param {*} sliderId 
+ * @param {*} labelId 
+ * @param {*} values 
+ * @returns 
+ */
+function setupScaleSlider(sliderId, labelId, values) {
+    var slider = document.getElementById(sliderId);
+    var label = document.getElementById(labelId);
 
     if (!slider) {
         return;
     }
 
     slider.addEventListener("input", function () {
-        updateCardSizeFromSlider(slider);
+        updateSliderFill(slider);
+        updateSliderLabel(slider, label, values);
     });
+
+    slider.dispatchEvent(new Event("input"));
 }
 
-
 /**
- * Updates the card size based on the slider value.
- *
- * @param {HTMLInputElement} slider - Card size slider
+ * Sets up Min/Max dual-range slider
  */
-function updateCardSizeFromSlider(slider) {
-    var currentSize = document.getElementById("currentSize");
-    var cardSizeScale = document.getElementById("cardSizeScale");
+function setupMinMaxSlider() {
+    var minInput = document.querySelector(".min-range");
+    var maxInput = document.querySelector(".max-range");
+    var minDisplay = document.querySelector(".min-input");
+    var maxDisplay = document.querySelector(".max-input");
+    var innerRange = document.querySelector(".inner-range-slider");
 
-    var responsiveStatus = document.getElementById("responsiveStatus");
-
-    var points = document.querySelectorAll(".scale-points span");
-
-    var cardSizes = [
-        "xs",
-        "s",
-        "m",
-        "l",
-        "xl"
-    ];
-
-    var value = Number(slider.value);
-    var size = cardSizes[value - 1];
-
-    if (!size) {
+    if (!minInput || !maxInput || !minDisplay || !maxDisplay || !innerRange) {
         return;
     }
 
-    /* Switch to Manual mode */
-    var toggle = document.getElementById('cardSizeModeToggle');
+    function updateRangeSlider() {
+        var minValue = Number(minInput.value);
+        var maxValue = Number(maxInput.value);
+        var minNumber = Number(minInput.min);
+        var maxNumber = Number(minInput.max);
 
-    if (toggle && toggle.checked) {
-        toggle.checked = false;
+        // Update displayed values
+        minDisplay.value = minValue;
+        maxDisplay.value = maxValue;
+
+        // Update inner range slider position and width
+        var minPercent = ((minValue - minNumber) / (maxNumber - minNumber)) * 100;
+        var maxPercent = ((maxValue - minNumber) / (maxNumber - minNumber)) * 100;
+
+        innerRange.style.left = minPercent + "%";
+        innerRange.style.right = (100 - maxPercent) + "%";
+
+        applyMinMaxRange();
     }
 
-    if(cardSizeScale){
-        cardSizeScale.classList.remove("disabled");
-    }
+    minInput.addEventListener("input", updateRangeSlider);
+    maxInput.addEventListener("input", updateRangeSlider);
 
-    if(responsiveStatus){
-        responsiveStatus.classList.remove("visible");
-    }
-
-    setCardSize(size);
-
-    /* Update current size label */
-    if(currentSize) {
-        currentSize.textContent = size.toUpperCase();
-    }
-
-    /* Update slider points */
-    points.forEach(function (point, index) {
-        if(index === value - 1) {
-            point.style.backgroundColor = "#2196F3";
-        } 
-        else {
-            point.style.backgroundColor = "#999999";
-        }
-    });
+    updateRangeSlider();
 }
-
-
-/**
- * Watches the grid size and updates the number
- * of responsive columns when it changes
- */
-function setupResizeObserver() {
-    var grid = document.querySelector("zing-grid");
-
-    if (!grid || typeof ResizeObserver === "undefined") {
-        return;
-    }
-
-    var resizeObserver = new ResizeObserver(function () {
-        if (grid.getAttribute("card-mode") === "responsive"){
-            updateResponsiveColumns();
-        }
-    });
-
-    resizeObserver.observe(grid);
-}
-
-
-/**
- * Sets the initial state of the controls.
- */
-function setupInitialState() {
-    var responsiveRadio = document.querySelector('input[name="cardSizeMode"][value="responsive"]');
-
-    var cardSizeScale = document.getElementById("cardSizeScale");
-    var responsiveStatus = document.getElementById("responsiveStatus");
-
-    if(responsiveRadio){
-        responsiveRadio.checked = true;
-    }
-
-    if(cardSizeScale){
-        cardSizeScale.classList.add("disabled");
-    }
-
-    if(responsiveStatus){
-        responsiveStatus.classList.add("visible");
-    }
-
-    updateResponsiveColumns();
-}
-
 
 window.addEventListener("DOMContentLoaded", function () {
     initFlashcards();
 
     setupCardSizeMenu();
     setupModeSwitching();
-    setupCardSizeSlider();
-    setupResizeObserver();
-    setupInitialState();
+
+    setupScaleSlider(
+        "cardResponsiveSlider",
+        "currentResponsiveSize",
+        ["XS", "S", "M", "L", "XL"]
+    );
+
+    setupScaleSlider(
+        "cardFixedSlider",
+        "currentFixedSize",
+        ["1", "2", "3", "4", "5", "6"]
+    );
+
+    activateResponsiveMode();
+    activateFixedMode();
+
+    setupMinMaxSlider();
 });
+
+
+
