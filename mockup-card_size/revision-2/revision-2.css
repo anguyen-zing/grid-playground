@@ -290,7 +290,7 @@
 }
 
 .card-size-scale.disabled {
-    opacity: 0.3;
+    display: none;
     pointer-events: none;
 }
 
