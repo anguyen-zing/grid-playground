@@ -1,16 +1,47 @@
 /**
- * Initializes the flashcards functionality.
+ * Stores the current settings for each mode.
+ *
+ * Each mode remembers its own settings while the user
+ * switches between Responsive and Fixed.
+ */
+var cardSizeSettings = {
+    responsive: {
+        scale: 3,
+        min: 1,
+        max: 6
+    },
+    fixed: {
+        columns: 4
+    }
+};
+
+
+const RESPONSIVE_LABELS = ["XS", "S", "M", "L", "XL"];
+const FIXED_LABELS = ["1", "2", "3", "4", "5", "6"];
+const CARD_WIDTHS = {
+    1: 140, // XS
+    2: 180, // S
+    3: 220, // M
+    4: 260, // L
+    5: 300  // XL
+};
+const CARD_GAP = 15;
+
+
+/**
+ * Initializes flashcard functionality.
  */
 function initFlashcards() {
     var grid = document.querySelector("zing-grid");
 
     if (!grid) {
         console.warn("zing-grid element not found");
-        return;
+        return false;
     }
-    setResponsiveMode();
-    console.log("Default/Initial Mode is", getCurrentMode());
+
+    return true;
 }
+
 
 /**
  * Opens and closes the card size menu
@@ -25,13 +56,9 @@ function setupCardSizeMenu() {
 
     button.addEventListener("click", function (event) {
         event.stopPropagation();
-
         var isOpen = menu.classList.toggle("open");
 
-        button.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
     menu.addEventListener("click", function (event) {
@@ -40,16 +67,114 @@ function setupCardSizeMenu() {
 
     document.addEventListener("click", function () {
         menu.classList.remove("open");
-        button.setAttribute(
-            "aria-expanded",
-            "false"
-        );
+        button.setAttribute("aria-expanded", "false");
     });
 }
 
 
 /**
- * Sets the grid to Responsive mode.
+ * Gets current card mode
+ *
+ * @returns {"responsive"|"fixed"|null}
+ */
+function getCurrentMode() {
+    var grid = document.querySelector("zing-grid");
+
+    return grid
+        ? grid.getAttribute("card-mode")
+        : null;
+}
+
+
+/**
+ * Applies a column count to the card grid
+ *
+ * Shared by both Responsive and Fixed modes
+ *
+ * @param {number} columns
+ */
+function applyGridColumns(columns) {
+    var body = document.querySelector("zg-body");
+
+    if (!body) {
+        return;
+    }
+
+    body.style.display = "grid";
+    body.style.gap = CARD_GAP + "px";
+
+    body.style.gridTemplateColumns = "repeat(" + columns + ", minmax(0, 1fr))";
+}
+
+
+/**
+ * Updates slider fill and label
+ *
+ * @param {HTMLInputElement} slider
+ * @param {HTMLElement|null} label
+ * @param {string[]} values
+ */
+function updateSliderUI(slider, label, values) {
+    if (!slider) {
+        return;
+    }
+
+    var min = Number(slider.min);
+    var max = Number(slider.max);
+    var value = Number(slider.value);
+
+    var percentage = ((value - min) / (max - min)) * 100;
+
+    slider.style.background =
+        `linear-gradient(
+            to right,
+            var(--range-slider-fill) 0%,
+            var(--range-slider-fill) ${percentage}%,
+            var(--slider-track-color) ${percentage}%,
+            var(--slider-track-color) 100%
+        )`;
+
+    if(label){
+        label.textContent = values[value - 1];
+    }
+}
+
+
+/**
+ * Generic slider setup
+ *
+ * Handles:
+ * - restoring initial value
+ * - slider fill
+ * - slider label
+ * - input callback
+ *
+ * @param {Object} options
+ */
+function setupSlider(options) {
+    var slider = document.getElementById(options.sliderId);
+    var label = document.getElementById(options.labelId);
+
+    if (!slider) {
+        return;
+    }
+
+    slider.value = options.initialValue;
+
+    function update() {
+        updateSliderUI(slider, label, options.values);
+
+        if (options.onInput) {
+            options.onInput(Number(slider.value));
+        }
+    }
+
+    slider.addEventListener("input", update);
+    update();
+}
+
+/**
+ * Set to Responsive mode
  */
 function setResponsiveMode() {
     var grid = document.querySelector("zing-grid");
@@ -59,18 +184,32 @@ function setResponsiveMode() {
     }
 
     grid.setAttribute("card-mode", "responsive");
-    grid.removeAttribute("card-size");
-    grid.style.removeProperty("--zg-card-columns");
 
     var slider = document.getElementById("cardResponsiveSlider");
+    var label = document.getElementById("currentResponsiveSize");
 
-    if (slider) {
-        slider.dispatchEvent(new Event("input"));
+    if (slider){
+        slider.value = cardSizeSettings.responsive.scale;
+        updateSliderUI(slider, label, RESPONSIVE_LABELS);
     }
+
+    var minInput = document.querySelector(".min-range");
+    var maxInput = document.querySelector(".max-range");
+
+    if(minInput){
+        minInput.value = cardSizeSettings.responsive.min;
+    }
+
+    if(maxInput){
+        maxInput.value = cardSizeSettings.responsive.max;
+    }
+
+    applyResponsiveLayout();
 }
 
+
 /**
- * Sets the grid to Fixed mode.
+ * Set to Fixed mode
  */
 function setFixedMode() {
     var grid = document.querySelector("zing-grid");
@@ -80,237 +219,163 @@ function setFixedMode() {
     }
 
     grid.setAttribute("card-mode", "fixed");
-    grid.removeAttribute("card-size");
 
     var slider = document.getElementById("cardFixedSlider");
-    if (slider) {
-        slider.dispatchEvent(new Event("input"));
+    var label = document.getElementById("currentFixedSize");
+
+    if(slider){
+        slider.value = cardSizeSettings.fixed.columns;
+        updateSliderUI(slider, label, FIXED_LABELS);
     }
+
+    applyFixedColumns();
 }
 
 /**
- * Gets current the 'card-mode' attribute value
- * @returns mode value: responsive or fixed 
- */
-function getCurrentMode() {
-    var grid = document.querySelector("zing-grid");
-    const currentMode = grid.getAttribute('card-mode');
-
-    return currentMode;
-}
-
-/**
- * Updates the toggle label text based on toggle state.
+ * Updates the mode toggle label.
  *
- * @param {HTMLInputElement} toggle - Toggle checkbox
+ * @param {HTMLInputElement} toggle
  */
 function updateToggleLabel(toggle) {
-    var label = document.getElementById('toggleLabel');
+    var label = document.getElementById("toggleLabel");
 
-    if (!label) {
-        return;
-    }
-
-    label.textContent = toggle.checked ? 'Responsive' : 'Fixed';
+    label.textContent = toggle.checked ? "Responsive" : "Fixed";
 }
 
-/**
- * Sets up the Responsive / Scale mode toggle.
- */
-function setupModeSwitching() {
-    var toggle = document.getElementById('cardSizeModeToggle');
-
-    if (!toggle) {
-        return;
-    }
-
-    toggle.addEventListener("change", function () {
-        handleModeChange(toggle);
-        updateToggleLabel(toggle);
-    });
-}
 
 /**
- * Handles switching between Responsive and Fixed modes.
+ * Manage switching between Responsive and Fixed
  *
- * @param {HTMLInputElement} input - Toggle checkbox
+ * @param {HTMLInputElement} toggle
  */
-function handleModeChange(input) {
-    const minMaxScale = document.getElementById("minMaxScale");
-    const responsiveScale = document.getElementById("cardResponsiveScale");
-    const fixedScale = document.getElementById("cardFixedScale");
+function handleModeChange(toggle) {
+    var responsive = toggle.checked;
 
-    // Checked = Responsive, Unchecked = Fixed
-    if (input.checked) {
+    var minMaxScale = document.getElementById("minMaxScale");
+    var responsiveScale =document.getElementById("cardResponsiveScale");
+    var fixedScale = document.getElementById("cardFixedScale");
+
+    if(minMaxScale) {
+        minMaxScale.classList.toggle("disabled", !responsive);
+    }
+
+    if(responsiveScale) {
+        responsiveScale.classList.toggle("disabled",!responsive );
+    }
+
+    if (fixedScale) {
+        fixedScale.classList.toggle("disabled", responsive);
+    }
+
+    updateToggleLabel(toggle);
+
+    if(responsive) {
         setResponsiveMode();
-
-        minMaxScale.classList.remove("disabled");
-        responsiveScale.classList.remove("disabled");
-
-        fixedScale.classList.add("disabled");
     }
     else {
         setFixedMode();
-
-        minMaxScale.classList.add("disabled");
-        responsiveScale.classList.add("disabled");
-
-        fixedScale.classList.remove("disabled");
     }
-
-    console.log("Mode changed to:", getCurrentMode());
 }
 
+
 /**
- * Allows users to choose a fixed set of cards per row and
- * card width adjusts to fill the available grid space
- * @returns 
+ * Sets up Responsive / Fixed mode toggle
  */
-function activateFixedMode() {
-    var slider = document.getElementById("cardFixedSlider");
+function setupModeSwitching() {
+    var toggle = document.getElementById("cardSizeModeToggle");
+            
+    toggle.addEventListener("change", function () {
+        handleModeChange(toggle);
+    });
+
+    handleModeChange(toggle);
+}
+
+
+/**
+ * Applying the Fixed column count
+ */
+function applyFixedColumns() {
+    applyGridColumns(
+        cardSizeSettings.fixed.columns
+    );
+}
+
+
+/**
+ * Sets up the Fixed slider
+ */
+function setupFixedSlider() {
+    setupSlider({
+        sliderId: "cardFixedSlider",
+        labelId: "currentFixedSize",
+        values: FIXED_LABELS,
+
+        initialValue: cardSizeSettings.fixed.columns,
+
+        onInput: function (value) {
+          
+            cardSizeSettings.fixed.columns = value;
+
+            if (getCurrentMode() === "fixed") {
+                applyFixedColumns();
+            }
+        }
+    });
+}
+
+
+/**
+ * Sets up the Responsive scale slider
+ */
+function setupResponsiveSlider() {
+    setupSlider({
+        sliderId: "cardResponsiveSlider",
+        labelId: "currentResponsiveSize",
+        values: RESPONSIVE_LABELS,
+        initialValue: cardSizeSettings.responsive.scale,
+
+        onInput: function (value) {
+            cardSizeSettings.responsive.scale = value;
+
+            if (getCurrentMode() === "responsive") applyResponsiveLayout();
+        }
+    });
+}
+
+
+/**
+ * Applies the Responsive layout.
+ *
+ * Scale controls approximate card width.
+ * Available width determines how many cards fit
+ * Min / Max limit the resulting column count
+ */
+function applyResponsiveLayout() {
+    if (getCurrentMode() !== "responsive") {
+        return;
+    }
+
     var body = document.querySelector("zg-body");
 
-    if (!slider || !body) {
-        return;
-    }
+    if(!body){ return; }
 
-    slider.addEventListener("input", function () {
-        var columns = Number(slider.value);
+    var settings = cardSizeSettings.responsive;
+    var minCardWidth = CARD_WIDTHS[settings.scale] || 220;
+    var availableWidth = body.clientWidth;
 
-        body.style.display = "grid";
-        body.style.gap = "15px";
-        body.style.gridTemplateColumns = "repeat(" + columns + ", 1fr)";
-    });
+    if(!availableWidth) { return; }
 
-    slider.dispatchEvent(new Event("input"));
+    var columns = Math.floor((availableWidth + CARD_GAP) / (minCardWidth + CARD_GAP));
+
+    columns = Math.max(settings.min, Math.min(columns, settings.max));
+
+    applyGridColumns(columns);
 }
+
 
 /**
- * Controls the size of the cards (XS–XL), and the # of cards per row changes 
- * automatically based on the available screen width with CSS media queries
- * @returns 
- */
-function activateResponsiveMode() {
-    var slider = document.getElementById("cardResponsiveSlider");
-    var grid = document.querySelector("zing-grid");
-
-    if (!slider || !grid) {
-        return;
-    }
-
-    var cardSizes = [
-        "xs",
-        "s",
-        "m",
-        "l",
-        "xl"
-    ];
-
-    slider.addEventListener("input", function () {
-        var value = Number(slider.value);
-        var size = cardSizes[value - 1];
-
-        if (!size) {
-            return;
-        }
-
-        grid.setAttribute("card-mode", "scale");
-        grid.setAttribute("card-size", size);
-
-        applyMinMaxRange();
-    });
-
-    slider.dispatchEvent(new Event("input"));
-}
-
-function applyMinMaxRange() {
-    var minInput = document.querySelector(".min-range");
-    var maxInput = document.querySelector(".max-range");
-    var grid = document.querySelector("zing-grid");
-
-    if (!minInput || !maxInput || !grid) {
-        return;
-    }
-
-    var min = Number(minInput.value);
-    var max = Number(maxInput.value);
-
-    grid.style.removeProperty("--zg-card-columns");
-
-    var columnWidth = parseFloat(
-        getComputedStyle(grid).getPropertyValue("--zg-card-columns")
-    );
-
-    if (!columnWidth) {
-        return;
-    }
-
-    var columns = Math.round(100 / columnWidth);
-
-    columns = Math.max(min, Math.min(columns, max));
-
-    grid.style.setProperty(
-        "--zg-card-columns",
-        (100 / columns) + "%"
-    );
-}
-
-/**
- * Updates slider fill as user drags it
- * @param {*} slider 
- */
-function updateSliderFill(slider) {
-    var min = Number(slider.min);
-    var max = Number(slider.max);
-    var value = Number(slider.value);
-
-    var percentage = ((value - min) / (max - min)) * 100;
-
-    slider.style.background = `linear-gradient(to right, var(--range-slider-fill) 0%, var(--range-slider-fill) ${percentage}%, var(--slider-track-color) ${percentage}%, var(--slider-track-color) 100%)`;
-}
-
-/**
- * Updates the current value label to reflect the exact value from slider
- * @param {*} slider 
- * @param {*} label 
- * @param {*} values 
- * @returns 
- */
-function updateSliderLabel(slider, label, values) {
-    var value = Number(slider.value);
-
-    if (!label) {
-        return;
-    }
-
-    label.textContent = values[value - 1];
-}
-
-/**
- * Setting up the general scale slider (responsive and fixed)
- * @param {*} sliderId 
- * @param {*} labelId 
- * @param {*} values 
- * @returns 
- */
-function setupScaleSlider(sliderId, labelId, values) {
-    var slider = document.getElementById(sliderId);
-    var label = document.getElementById(labelId);
-
-    if (!slider) {
-        return;
-    }
-
-    slider.addEventListener("input", function () {
-        updateSliderFill(slider);
-        updateSliderLabel(slider, label, values);
-    });
-
-    slider.dispatchEvent(new Event("input"));
-}
-
-/**
- * Sets up Min/Max dual-range slider
+ * Sets up Min / Max dual-range slider
  */
 function setupMinMaxSlider() {
     var minInput = document.querySelector(".min-range");
@@ -329,18 +394,27 @@ function setupMinMaxSlider() {
         var minNumber = Number(minInput.min);
         var maxNumber = Number(minInput.max);
 
-        // Update displayed values
+        if (minValue > maxValue) {
+            minValue = maxValue;
+            minInput.value = minValue;
+        }
+
+        cardSizeSettings.responsive.min = minValue;
+        cardSizeSettings.responsive.max = maxValue;
+
         minDisplay.value = minValue;
         maxDisplay.value = maxValue;
 
-        // Update inner range slider position and width
-        var minPercent = ((minValue - minNumber) / (maxNumber - minNumber)) * 100;
-        var maxPercent = ((maxValue - minNumber) / (maxNumber - minNumber)) * 100;
+        var range = maxNumber - minNumber;
+        var minPercent = ((minValue - minNumber) / range) * 100;
+        var maxPercent = ((maxValue - minNumber) / range) * 100;
 
         innerRange.style.left = minPercent + "%";
         innerRange.style.right = (100 - maxPercent) + "%";
 
-        applyMinMaxRange();
+        if (getCurrentMode() === "responsive") {
+            applyResponsiveLayout();
+        }
     }
 
     minInput.addEventListener("input", updateRangeSlider);
@@ -349,29 +423,30 @@ function setupMinMaxSlider() {
     updateRangeSlider();
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-    initFlashcards();
-
-    setupCardSizeMenu();
-    setupModeSwitching();
-
-    setupScaleSlider(
-        "cardResponsiveSlider",
-        "currentResponsiveSize",
-        ["XS", "S", "M", "L", "XL"]
+/**
+ * Recalculate Responsive layout when available browser width changes.
+ */
+function setupResponsiveResize() {
+    window.addEventListener("resize", function () {
+        if(getCurrentMode() === "responsive") {
+            applyResponsiveLayout();
+        }
+    }
     );
+}
 
-    setupScaleSlider(
-        "cardFixedSlider",
-        "currentFixedSize",
-        ["1", "2", "3", "4", "5", "6"]
-    );
+window.addEventListener( "DOMContentLoaded",
+    function () {
+        if (!initFlashcards()) {
+            return;
+        }
 
-    activateResponsiveMode();
-    activateFixedMode();
+        setupCardSizeMenu();
+        setupResponsiveSlider();
+        setupFixedSlider();
+        setupMinMaxSlider();
 
-    setupMinMaxSlider();
-});
-
-
-
+        setupModeSwitching();
+        setupResponsiveResize();
+    }
+);
